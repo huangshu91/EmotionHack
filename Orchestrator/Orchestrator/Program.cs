@@ -19,7 +19,7 @@ namespace Orchestrator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new VideoPlayerForm());
 
             //EmotionClient client = new EmotionClient();
 
