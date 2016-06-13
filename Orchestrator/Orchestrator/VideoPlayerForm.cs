@@ -19,6 +19,7 @@ namespace Orchestrator
 
         private void VideoPlayerForm_Load(object sender, EventArgs e)
         {
+            axWindowsMediaPlayer1.settings.autoStart = false;
             axWindowsMediaPlayer1.URL =
             @"C:\Oneweek\Sample short video for testing.mp4";
         }
