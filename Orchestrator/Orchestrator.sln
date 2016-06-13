@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emotional", "Emotional\Emot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{ED17B55B-A66A-4634-8EDE-1CC40FCD85D2}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EmotionDb", "EmotionDb\EmotionDb.sqlproj", "{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{ED17B55B-A66A-4634-8EDE-1CC40FCD85D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED17B55B-A66A-4634-8EDE-1CC40FCD85D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED17B55B-A66A-4634-8EDE-1CC40FCD85D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

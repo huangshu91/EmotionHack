@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Configuration;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 using Emotional.Models;
+using DataStore;
 
 namespace Emotional.Utility
 {
@@ -16,6 +18,10 @@ namespace Emotional.Utility
 
         private const string uri = @"https://api.projectoxford.ai/emotion/v1.0/recognize?";
 
+        private IDataLayer dbLayer = new SQLDataLayer();
+
+        private Stopwatch stopWatch = new Stopwatch();
+        
         public EmoHttpClient()
         {
             client = new HttpClient();
@@ -39,8 +45,12 @@ namespace Emotional.Utility
             using (var content = new ByteArrayContent(byteIn))
             {
                 content.Headers.Add("Content-Type", "application/octet-stream");
+                stopWatch.Start();
                 response = await client.PostAsync(uri, content);
+                stopWatch.Stop();
             }
+
+            var latency = stopWatch.ElapsedMilliseconds;
 
             var stringRes = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<EmotionScore>>(stringRes);
