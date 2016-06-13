@@ -29,6 +29,14 @@ namespace DataStore
             throw new NotImplementedException();
         }
 
+        public async Task EndExecution()
+        {
+            string qstring = @"UPDATE [emo].[ExecutionInstance] SET EndTime = GETUTCNOW() WHERE Id = {0};";
+
+            string query = string.Format(qstring, executionId);
+            throw new NotImplementedException();
+        }
+
         private async Task<bool> InsertSingleDataInputThroughQuery(string insertQuery)
         {
             throw new NotImplementedException();
