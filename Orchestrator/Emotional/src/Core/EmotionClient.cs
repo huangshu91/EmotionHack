@@ -15,20 +15,25 @@ namespace Emotional.Core
     {
         private EmoHttpClient client { get; set; }
 
+        private OrderedDictionary history = new OrderedDictionary();
+        private OrderedDictionary aggHistory = new OrderedDictionary();
+
         public EmotionClient()
         {
             client = new EmoHttpClient();
         }
 
-        public async Task<EmotionScore> GetEmotion(Stream stream)
+        public async Task<EmotionScore> GetEmotion(Stream stream, DateTime time)
         {
-            return await GetEmotion(stream);
+            var scores = await client.GetEmotion(stream);
+            history.Add(time, scores);
+            return scores;
         }
 
-        public async Task<EmotionScore> GetEmotion(MemoryStream stream)
+        public async Task<EmotionScore> GetEmotion(MemoryStream stream, DateTime time)
         {
-            return await GetEmotion(stream);
-
+            var scores = await client.GetEmotion(stream);
+            return scores;
         }
     }
 }
