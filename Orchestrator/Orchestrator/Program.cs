@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Emotional.Models;
+using Emotional.Core;
+
 namespace Orchestrator
 {
     static class Program
@@ -17,6 +20,9 @@ namespace Orchestrator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            //EmotionClient client = new EmotionClient();
+            
         }
     }
 }
