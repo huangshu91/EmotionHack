@@ -28,6 +28,7 @@ namespace Emotional.Core
         public async Task<EmotionScore> GetEmotion(MemoryStream stream)
         {
             return await GetEmotion(stream);
+
         }
     }
 }

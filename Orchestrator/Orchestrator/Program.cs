@@ -22,7 +22,7 @@ namespace Orchestrator
             Application.Run(new Form1());
 
             //EmotionClient client = new EmotionClient();
-            
+
         }
     }
 }
