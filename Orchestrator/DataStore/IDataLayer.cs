@@ -13,6 +13,8 @@ namespace DataStore
     {
         Task<long> SetExecutionContext();
 
+        Task EndExecution();
+
         Task<bool> InsertApiLatencyTelemetry(DateTime timestamp);
     }
 }
