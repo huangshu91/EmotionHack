@@ -60,9 +60,11 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="emo" />
+    <Folder Include="schema" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="emo\ExecutionInstance.sql" />
-    <Build Include="emo\Table1.sql" />
+    <Build Include="schema\emo.sql" />
+    <Build Include="emo\EmotionScore.sql" />
   </ItemGroup>
 </Project>

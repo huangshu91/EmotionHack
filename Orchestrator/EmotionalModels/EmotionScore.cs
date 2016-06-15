@@ -7,7 +7,14 @@ namespace Emotional.Models
     public class EmotionScore
     {
         public FaceRectangle faceRectangle { get; set; }
+
         public Scores scores { get; set; }
+
+        public DateTime startTime { get; set; }
+
+        public DateTime endTime { get; set; }
+
+        public int executionId { get; set; }
     }
 
     public class FaceRectangle

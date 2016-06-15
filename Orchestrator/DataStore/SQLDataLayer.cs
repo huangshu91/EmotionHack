@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Emotional.Models;
 
 namespace DataStore
 {
@@ -12,9 +15,7 @@ namespace DataStore
     public class SQLDataLayer : IDataLayer
     {
         private string connection = @"Server=tcp:emotiondb.database.windows.net,1433;Database=EmotionHack;User ID=emotionhack@emotiondb;Password=@NYTH!NG123;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
-
-        public long executionId = 0;
-
+        
         /// <summary>
         /// Sets up the connection to the SQL database
         /// </summary>
@@ -24,17 +25,14 @@ namespace DataStore
             throw new NotImplementedException();
         }
 
-        public async Task<long> SetExecutionContext()
+        public async Task<int> GetExecutionContext(VideoExecution video)
         {
-            throw new NotImplementedException();
-        }
+            string qstring = @"INSERT INTO [emo].[ExecutionInstance] (FileName, Width, Height) VALUES ('{0}', {1}, {2})";
+            qstring = string.Format(qstring, video.fileName, video.width, video.height);
 
-        public async Task EndExecution()
-        {
-            string qstring = @"UPDATE [emo].[ExecutionInstance] SET EndTime = GETUTCNOW() WHERE Id = {0};";
+            var result = await QueryData<int>(qstring);
 
-            string query = string.Format(qstring, executionId);
-            throw new NotImplementedException();
+            return result;
         }
 
         private async Task<bool> InsertSingleDataInputThroughQuery(string insertQuery)
@@ -47,8 +45,14 @@ namespace DataStore
             throw new NotImplementedException();
         }
 
-        public Task<bool> InsertApiLatencyTelemetry(DateTime timestamp)
+        public Task<bool> InsertScores(OrderedDictionary scores, int executionId)
         {
+            //end execution
+            string qstring = @"UPDATE [emo].[ExecutionInstance] SET EndTime = GETUTCNOW() WHERE Id = {0};";
+
+            string query = string.Format(qstring, executionId);
+
+            //bulk insert all the scores
             throw new NotImplementedException();
         }
     }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Emotional.Models;
 
 namespace DataStore
 {
@@ -11,10 +14,8 @@ namespace DataStore
     /// </summary>
     public interface IDataLayer
     {
-        Task<long> SetExecutionContext();
+        Task<int> GetExecutionContext(VideoExecution video);
 
-        Task EndExecution();
-
-        Task<bool> InsertApiLatencyTelemetry(DateTime timestamp);
+        Task<bool> InsertScores(OrderedDictionary scores, int executionId);
     }
 }

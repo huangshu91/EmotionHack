@@ -18,10 +18,13 @@ namespace Emotional.Core
         private OrderedDictionary history = new OrderedDictionary();
         private OrderedDictionary aggHistory = new OrderedDictionary();
 
+        private int ExecutionId { get; set; }
+
         public EmotionClient()
         {
             client = new EmoHttpClient();
         }
+        
 
         public async Task<EmotionScore> GetEmotion(Stream stream, DateTime time)
         {

@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Core\EmotionClient.cs" />
-    <Compile Include="src\Models\EmotionScore.cs" />
     <Compile Include="src\Utility\EmoHttpClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +55,10 @@
     <ProjectReference Include="..\DataStore\DataStore.csproj">
       <Project>{ed17b55b-a66a-4634-8ede-1cc40fcd85d2}</Project>
       <Name>DataStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmotionalModels\EmotionalModels.csproj">
+      <Project>{a17b5861-adb8-44ea-8e21-fe08e46f7b27}</Project>
+      <Name>EmotionalModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
