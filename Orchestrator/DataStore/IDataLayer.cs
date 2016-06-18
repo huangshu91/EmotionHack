@@ -16,6 +16,6 @@ namespace DataStore
     {
         Task<int> GetExecutionContext(VideoExecution video);
 
-        Task<bool> InsertScores(OrderedDictionary scores, int executionId);
+        Task<bool> FinishExecution(OrderedDictionary scores, int executionId);
     }
 }

@@ -27,7 +27,9 @@ namespace DataStore
 
         public async Task<int> GetExecutionContext(VideoExecution video)
         {
-            string qstring = @"INSERT INTO [emo].[ExecutionInstance] (FileName, Width, Height) VALUES ('{0}', {1}, {2})";
+            string qstring = @"INSERT INTO [emo].[ExecutionInstance] (FileName, Width, Height) 
+                               VALUES ('{0}', {1}, {2});  
+                               SELECT SCOPE_IDENTITY();";
             qstring = string.Format(qstring, video.fileName, video.width, video.height);
 
             var result = await QueryData<int>(qstring);
@@ -45,10 +47,12 @@ namespace DataStore
             throw new NotImplementedException();
         }
 
-        public Task<bool> InsertScores(OrderedDictionary scores, int executionId)
+        public Task<bool> FinishExecution(OrderedDictionary scores, int executionId)
         {
             //end execution
-            string qstring = @"UPDATE [emo].[ExecutionInstance] SET EndTime = GETUTCNOW() WHERE Id = {0};";
+            string qstring = @"UPDATE [emo].[ExecutionInstance] 
+                               SET EndTime = GETUTCNOW()
+                               WHERE Id = {0};";
 
             string query = string.Format(qstring, executionId);
 
