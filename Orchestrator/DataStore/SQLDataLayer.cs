@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 using Emotional.Models;
 
@@ -14,15 +15,16 @@ namespace DataStore
     /// </summary>
     public class SQLDataLayer : IDataLayer
     {
-        private string connection = @"Server=tcp:emotiondb.database.windows.net,1433;Database=EmotionHack;User ID=emotionhack@emotiondb;Password=@NYTH!NG123;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
-        
+        private string _connection = @"Server=tcp:emotiondb.database.windows.net,1433;Database=EmotionHack;User ID=emotionhack@emotiondb;Password=@NYTH!NG123;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+        private SqlConnection _dbConnection;
+
         /// <summary>
         /// Sets up the connection to the SQL database
         /// </summary>
         /// <param name="databaseConnection"></param>
         public SQLDataLayer(string databaseConnection = null)
         {
-            throw new NotImplementedException();
+            _dbConnection = new SqlConnection(_connection);
         }
 
         public async Task<int> GetExecutionContext(VideoExecution video)

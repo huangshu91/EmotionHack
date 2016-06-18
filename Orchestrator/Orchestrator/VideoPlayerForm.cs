@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Emotional.Core;
 
 namespace Orchestrator
 {
@@ -19,6 +13,8 @@ namespace Orchestrator
 
         private void VideoPlayerForm_Load(object sender, EventArgs e)
         {
+            EmotionClient client = new EmotionClient();
+
             axWindowsMediaPlayer1.settings.autoStart = false;
             axWindowsMediaPlayer1.URL =
             @"C:\Oneweek\Sample short video for testing.mp4";
