@@ -25,8 +25,7 @@ namespace Emotional.Utility
         public EmoHttpClient()
         {
             client = new HttpClient();
-
-            //string apiKey = ConfigurationManager.AppSettings["apiKey"];
+            
             string apiKey = @"f070bcbcc20048eeacd8ad9aa4d11ff6";
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
         }

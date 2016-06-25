@@ -1,16 +1,26 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Emotional.Core;
 
 namespace EmotionalTest
 {
     [TestClass]
     public class EmotionalClientTest
     {
-        string TestInput = @"/TestResources/happybaby_lowres.jpg";
+        string TestInput = @"../../TestResources/happybaby_lowres.jpg";
 
         [TestMethod]
-        public void TestMethod1()
+        public async Task GetScores()
         {
+            FileStream file = new FileStream(TestInput, FileMode.Open);
+
+            EmotionClient emoClient = new EmotionClient();
+            var result = await emoClient.GetEmotion(file, DateTime.UtcNow);
+
+            Assert.IsNotNull(result.scores); 
         }
     }
 }

@@ -11,6 +11,7 @@ namespace EmotionalTest
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
