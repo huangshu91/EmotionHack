@@ -33,5 +33,12 @@ namespace Emotional.Core
         /// <param name="time">time at which the snapshot was taken</param>
         /// <returns></returns>
         Task<EmotionScore> GetEmotion(MemoryStream stream, DateTime time);
+        /// <summary>
+        /// Dummy call to the Emotional API which fakes the snapshot of image from the web cam
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        Task<EmotionScore> GetDummyEmotion(DateTime time, MemoryStream stream = null);
     }
 }
