@@ -74,5 +74,10 @@ namespace DataStore
 
             return true;
         }
+
+        public async Task<List<EmotionScore>> GetScoresByExecutionId(int executionId)
+        {
+            return null;
+        }
     }
 }
