@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchestrator", "Orchestrator\Orchestrator.csproj", "{83614663-782A-4818-BC31-CEBB1BD18037}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionalTest", "EmotionalTest\EmotionalTest.csproj", "{92445BD9-6BA3-486B-81EA-FEA83EBC9B72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFMediaPlayer", "WPFMediaPlayer\WPFMediaPlayer.csproj", "{E204E1A2-185F-44A5-BAEF-53E9740E449D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCam", "WebCam\WebCam.csproj", "{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{E204E1A2-185F-44A5-BAEF-53E9740E449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E204E1A2-185F-44A5-BAEF-53E9740E449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E204E1A2-185F-44A5-BAEF-53E9740E449D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
