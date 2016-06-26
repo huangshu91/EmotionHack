@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -48,6 +49,57 @@ namespace EmotionalTest
                     Assert.AreEqual(fname, vName);
                     Assert.AreEqual(vHeight, fheight);
                     Assert.AreEqual(vWidth, fwidth);
+                }
+            }
+
+            double scoreValue = 0.5;
+            DateTime now = DateTime.UtcNow;
+
+            EmotionScore score = new EmotionScore()
+            {
+                startTime = now,
+                endTime = now,
+                scores = new Scores()
+                {
+                    anger = scoreValue,
+                    contempt = scoreValue,
+                    disgust = scoreValue,
+                    fear = scoreValue,
+                    happiness = scoreValue,
+                    neutral = scoreValue,
+                    sadness = scoreValue,
+                    surprise = scoreValue
+                },
+                executionId = executionId,
+            };
+
+            OrderedDictionary od = new OrderedDictionary();
+            od.Add(now, score);
+
+            var finish = await db.FinishExecution(od, executionId);
+
+            Assert.AreEqual(finish, true);
+
+            var query2 = @"SELECT *, COUNT(*) as NumRows FROM [emo].[EmotionScore] WHERE ExecutionId = @exeId ORDER BY TimeStamp ASC;";
+
+            using (var reader = await this.ExecuteReaderAsync(query2, false, "@exeId", executionId))
+            {
+                if (reader.Read())
+                {
+                    var numRows = Convert.ToInt32(reader["NumRows"]);
+                    Assert.AreEqual(numRows, 1);
+
+                    var start = Convert.ToDateTime(reader["StartTime"]);
+                    var end = Convert.ToDateTime(reader["EndTime"]);
+                    var time = Convert.ToDateTime(reader["TimeStamp"]);
+
+                    Assert.AreEqual(start, now);
+                    Assert.AreEqual(end, now);
+                    Assert.AreEqual(time, now);
+
+                    var angerScore = Convert.ToDouble(reader["Anger"]);
+
+                    Assert.AreEqual(angerScore, scoreValue);
                 }
             }
         }

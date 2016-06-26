@@ -14,6 +14,8 @@ namespace Emotional.Models
 
         public DateTime endTime { get; set; }
 
+        public DateTime timeStamp { get; set; }
+
         public int executionId { get; set; }
     }
 

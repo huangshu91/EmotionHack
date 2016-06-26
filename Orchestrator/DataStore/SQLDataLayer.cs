@@ -48,17 +48,18 @@ namespace DataStore
             await ExecuteCommandAsync(query1, false, "@ExecutionId", executionId);
 
             string query2 = @"INSERT INTO [emo].[EmotionScore] 
-                                (ExecutionId, Anger, Contempt, Disgust, Fear, Happiness, Neutral, Sadness, Surprise, StartTime, EndTime) VALUES @Values";
+                                (ExecutionId, Anger, Contempt, Disgust, Fear, Happiness, Neutral, 
+                                 Sadness, Surprise, StartTime, EndTime, TimeStamp) VALUES @Values";
 
             List<string> values = new List<string>();
 
             foreach (DictionaryEntry entry in scores)
             {
-                string val = @"({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})";
+                string val = @"({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11})";
                 EmotionScore score = entry.Value as EmotionScore;
                 val = string.Format(val, score.scores.anger, score.scores.contempt, score.scores.disgust, score.scores.fear, 
                                          score.scores.happiness, score.scores.neutral, score.scores.sadness, score.scores.surprise, 
-                                         score.startTime, score.endTime);
+                                         score.startTime, score.endTime, entry.Key);
 
                 values.Add(val);
             }

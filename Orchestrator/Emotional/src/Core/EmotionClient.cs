@@ -70,5 +70,32 @@ namespace Emotional.Core
             history.Add(time, scores);
             return scores;
         }
+
+        public Task<EmotionScore> GetDummyEmotion(DateTime time, MemoryStream stream = null)
+        {
+            double defVal = 0.5;
+            Scores score = new Scores()
+            {
+                anger = defVal,
+                contempt = defVal,
+                disgust = defVal,
+                fear = defVal,
+                happiness = defVal,
+                neutral = defVal,
+                sadness = defVal,
+                surprise = defVal,
+            };
+
+            EmotionScore res = new EmotionScore()
+            {
+                timeStamp = time,
+                startTime = DateTime.UtcNow,
+                endTime = DateTime.UtcNow,
+                executionId = this.ExecutionId,
+                scores = score,
+            };
+
+            return Task.FromResult<EmotionScore>(res);
+        }
     }
 }

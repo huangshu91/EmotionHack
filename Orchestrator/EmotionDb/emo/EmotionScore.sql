@@ -11,6 +11,7 @@
 	[Sadness] FLOAT NOT NULL,
 	[Surprise] FLOAT NOT NULL,
 
+	[TimeStamp] DATETIME NOT NULL,
 	[StartTime] DATETIME NOT NULL,
 	[EndTime] DATETIME NOT NULL,
 
