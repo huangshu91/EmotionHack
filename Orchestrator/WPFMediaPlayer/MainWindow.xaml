@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFMediaPlayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="706" Width="1001"
-        KeyDown="mediaElement_KeyDown">
+        Title="MainWindow"
+        KeyDown="mediaElement_KeyDown" Background="Black">
     <Grid>
         <MediaElement x:Name="mediaElement" LoadedBehavior="Manual" />
     </Grid>

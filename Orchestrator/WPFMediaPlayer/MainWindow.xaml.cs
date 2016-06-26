@@ -28,6 +28,10 @@ namespace WPFMediaPlayer
             InitializeComponent();
         }
 
+
+
+        #region media player options
+
         private void mediaElement_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -40,6 +44,14 @@ namespace WPFMediaPlayer
                     break;
                 case Key.S:
                     Stop();
+                    break;
+                case Key.F:
+                    WindowState = WindowState.Maximized;
+                    WindowStyle = WindowStyle.None;
+                    break;
+                case Key.G:
+                    WindowState = WindowState.Normal;
+                    WindowStyle = WindowStyle.SingleBorderWindow;
                     break;
             }
         }
@@ -66,5 +78,7 @@ namespace WPFMediaPlayer
             ofd.ShowDialog();
             mediaElement.Source = new Uri(ofd.FileName);
         }
+
+        #endregion
     }
 }

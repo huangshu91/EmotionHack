@@ -13,7 +13,7 @@ namespace Orchestrator
 
         private void VideoPlayerForm_Load(object sender, EventArgs e)
         {
-            EmotionClient client = new EmotionClient();
+            IEmotionClient client = new EmotionClient();
 
             axWindowsMediaPlayer1.settings.autoStart = false;
             axWindowsMediaPlayer1.URL =

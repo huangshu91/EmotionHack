@@ -13,7 +13,7 @@ using Emotional.Models;
 
 namespace Emotional.Core
 {
-    public class EmotionClient
+    public class EmotionClient : IEmotionClient
     {
         private EmoHttpClient client { get; set; }
         private IDataLayer DbLayer { get; set; }

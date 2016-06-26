@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Core\EmotionClient.cs" />
+    <Compile Include="src\Core\IEmotionClient.cs" />
     <Compile Include="src\Utility\EmoHttpClient.cs" />
     <Compile Include="src\Utility\Logger.cs" />
   </ItemGroup>
