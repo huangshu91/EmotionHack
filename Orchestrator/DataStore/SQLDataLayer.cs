@@ -21,14 +21,39 @@ namespace DataStore
         /// <param name="databaseConnection"></param>
         public SQLDataLayer(string databaseConnection = null)
         {
-            this.ConnectionString = _connection;
+            this.ConnectionString = databaseConnection ?? _connection;
+        }
+
+        /// <summary>
+        /// A helper method to be used when Retry is needed.
+        /// </summary>
+        /// <param name="protectedFunction">A method or lambda expression invoked which will be retried if SQL Exceptions occur</param>
+        /// <returns>Task</returns>
+        public async Task WithDataLayerAsync(Func<SQLDataLayer, Task> protectedFunction)
+        {
+            await this.WithDataLayerAsync<int>(async x =>
+            {
+                await protectedFunction(this);
+                return 0;
+            });
+        }
+
+        /// <summary>
+        /// A helper method to be used when Retry is needed.
+        /// </summary>
+        /// <typeparam name="T">The result returned by WithDataLayer from the protected method provided</typeparam>
+        /// <param name="protectedFunction">A method or lambda expression invoked which will be retried if SQL Exceptions occur</param>
+        /// <returns>What the protected method returns</returns>
+        public async Task<T> WithDataLayerAsync<T>(Func<SQLDataLayer, Task<T>> protectedFunction)
+        {
+            return await this.WithDataLayerAsync<T, SQLDataLayer>(protectedFunction);
         }
 
         public async Task<int> GetExecutionContext(VideoExecution video)
         {
-            string query = @"INSERT INTO [emo].[ExecutionInstance] (FileName, Width, Height) 
-                               VALUES (@FileName, @Width, @Height);  
-                               SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO [emo].[ExecutionInstance] (StartTime, FileName, Width, Height) 
+                               VALUES (GETUTCDATE(), @FileName, @Width, @Height);  
+                               SELECT CONVERT(int, SCOPE_IDENTITY());";
 
             var result = await ExecuteScalarAsync<int>(query, false, 
                 "@FileName", video.fileName, 
@@ -42,22 +67,22 @@ namespace DataStore
         {
             //end execution
             string query1 = @"UPDATE [emo].[ExecutionInstance] 
-                               SET EndTime = GETUTCNOW()
+                               SET EndTime = GETUTCDATE()
                                WHERE Id = @ExecutionId;";
 
             await ExecuteCommandAsync(query1, false, "@ExecutionId", executionId);
 
             string query2 = @"INSERT INTO [emo].[EmotionScore] 
                                 (ExecutionId, Anger, Contempt, Disgust, Fear, Happiness, Neutral, 
-                                 Sadness, Surprise, StartTime, EndTime, TimeStamp) VALUES @Values";
+                                 Sadness, Surprise, StartTime, EndTime, TimeStamp) VALUES {0}";
 
             List<string> values = new List<string>();
 
             foreach (DictionaryEntry entry in scores)
             {
-                string val = @"({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11})";
+                string val = @"({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, '{9}', '{10}', '{11}')";
                 EmotionScore score = entry.Value as EmotionScore;
-                val = string.Format(val, score.scores.anger, score.scores.contempt, score.scores.disgust, score.scores.fear, 
+                val = string.Format(val, executionId, score.scores.anger, score.scores.contempt, score.scores.disgust, score.scores.fear, 
                                          score.scores.happiness, score.scores.neutral, score.scores.sadness, score.scores.surprise, 
                                          score.startTime, score.endTime, entry.Key);
 
@@ -70,8 +95,9 @@ namespace DataStore
             }
 
             var valuesString = String.Join(",", values);
+            query2 = string.Format(query2, valuesString);
 
-            await ExecuteCommandAsync(query2, false, "@Values", valuesString);
+            await ExecuteCommandAsync(query2, false);
 
             return true;
         }

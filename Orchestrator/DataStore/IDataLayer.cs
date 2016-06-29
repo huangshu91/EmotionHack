@@ -17,5 +17,9 @@ namespace DataStore
         Task<int> GetExecutionContext(VideoExecution video);
 
         Task<bool> FinishExecution(OrderedDictionary scores, int executionId);
+
+        Task WithDataLayerAsync(Func<SQLDataLayer, Task> protectedFunction);
+
+        Task<T> WithDataLayerAsync<T>(Func<SQLDataLayer, Task<T>> protectedFunction);
     }
 }
