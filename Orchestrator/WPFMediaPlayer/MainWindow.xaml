@@ -8,6 +8,6 @@
         Title="MainWindow"
         KeyDown="mediaElement_KeyDown" Background="Black">
     <Grid>
-        <MediaElement x:Name="mediaElement" LoadedBehavior="Manual" />
+        <MediaElement x:Name="mediaElement" LoadedBehavior="Manual" MediaEnded="mediaElement_MediaEnded" />
     </Grid>
 </Window>

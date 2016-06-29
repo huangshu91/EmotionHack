@@ -11,7 +11,7 @@ using AForge.Video.DirectShow;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace WebCam_test
+namespace WebCam
 {
     public class AccessCamera
     {
@@ -19,7 +19,9 @@ namespace WebCam_test
         private FilterInfoCollection webcam;
         private VideoCaptureDevice cam;
 
-
+        /// <summary>
+        /// Identifies the web cam available on the machine and sets up the AccessCamera object
+        /// </summary>
         public AccessCamera()
         {
             ms = new System.IO.MemoryStream();
@@ -28,18 +30,25 @@ namespace WebCam_test
             cam.NewFrame += new NewFrameEventHandler(cam_NewFrame);
         }
 
+        /// <summary>
+        /// Turns on the web cam for recording and capturing images
+        /// </summary>
         public void cam_Start()
         {
             cam.Start();
         }
 
-        void cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+
+        private void cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             Bitmap bit = (Bitmap)eventArgs.Frame.Clone();
             bit.Save(ms, ImageFormat.Jpeg);
             ms.Position = 0;
         }
 
+        /// <summary>
+        /// shuts down the web cam
+        /// </summary>
         public void cam_Stop()
         {
             if (cam.IsRunning)
@@ -48,6 +57,10 @@ namespace WebCam_test
             }
         }
 
+        /// <summary>
+        /// Captures an image from the web cam and returns it a a mem stream
+        /// </summary>
+        /// <returns></returns>
         public MemoryStream cam_TakePic()
         {
             return ms;

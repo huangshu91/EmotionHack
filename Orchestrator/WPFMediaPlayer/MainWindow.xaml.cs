@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using CamEmoOrc;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,14 @@ namespace WPFMediaPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool _playState;
+        private bool _playState, _startExecution;
+        private IOrchestrator _Orchestrator;
         public MainWindow()
         {
             _playState = false;
+            _startExecution = false;
             InitializeComponent();
+            _Orchestrator = new BasicOrchestrator(Settings.Default.SamplingRate);
         }
 
 
@@ -64,6 +68,13 @@ namespace WPFMediaPlayer
 
         private void PlayPause()
         {
+            if (!_startExecution)
+            {
+                _startExecution = true;
+                //Need to pass the visualizer
+                _Orchestrator.Start(null);
+            }
+
             if (!_playState) mediaElement.Play();
             else mediaElement.Pause();
             _playState = !_playState;
@@ -80,5 +91,14 @@ namespace WPFMediaPlayer
         }
 
         #endregion
+
+        private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (_startExecution)
+            {
+                _startExecution = false;
+                _Orchestrator.Stop();
+            }
+        }
     }
 }

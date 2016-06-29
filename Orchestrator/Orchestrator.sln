@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchestrator", "Orchestrator\Orchestrator.csproj", "{83614663-782A-4818-BC31-CEBB1BD18037}"
 EndProject
@@ -20,6 +20,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFMediaPlayer", "WPFMediaPlayer\WPFMediaPlayer.csproj", "{E204E1A2-185F-44A5-BAEF-53E9740E449D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCam", "WebCam\WebCam.csproj", "{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamEmoOrc", "CamEmoOrc\CamEmoOrc.csproj", "{5055CEBD-8BA1-4C30-B67F-9B7052250430}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ED17B55B-A66A-4634-8EDE-1CC40FCD85D2} = {ED17B55B-A66A-4634-8EDE-1CC40FCD85D2}
+		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93} = {C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +67,10 @@ Global
 		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E141FF70-CAC2-412C-ABAE-62CCCAE929F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5055CEBD-8BA1-4C30-B67F-9B7052250430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5055CEBD-8BA1-4C30-B67F-9B7052250430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5055CEBD-8BA1-4C30-B67F-9B7052250430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5055CEBD-8BA1-4C30-B67F-9B7052250430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
