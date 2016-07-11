@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmotionalModels\EmotionalModels.csproj">
+      <Project>{a17b5861-adb8-44ea-8e21-fe08e46f7b27}</Project>
+      <Name>EmotionalModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Emotional\Emotional.csproj">
       <Project>{4226ce5f-117e-4c4d-9a67-7805a3b81020}</Project>
       <Name>Emotional</Name>

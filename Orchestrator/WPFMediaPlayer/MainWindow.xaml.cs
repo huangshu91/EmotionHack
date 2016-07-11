@@ -1,4 +1,5 @@
 ﻿using CamEmoOrc;
+using Emotional.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -71,8 +72,14 @@ namespace WPFMediaPlayer
             if (!_startExecution)
             {
                 _startExecution = true;
+                VideoExecution vidEx = new VideoExecution()
+                {
+                    fileName = mediaElement.Source.ToString(),
+                    height = (int) mediaElement.ActualHeight,
+                    width = (int) mediaElement.ActualWidth
+                };
                 //Need to pass the visualizer
-                _Orchestrator.Start(null);
+                _Orchestrator.Start(vidEx, null);
             }
 
             if (!_playState) mediaElement.Play();

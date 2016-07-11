@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Emotional.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -15,9 +16,10 @@ namespace CamEmoOrc
         /// <summary>
         /// Starts the orchestration
         /// </summary>
+        /// <param name="videoExecution">The video execution instance</param>
         /// <param name="realTimeVisualizer">The object that is showing the visualizations of the realtime scores</param>
         /// <returns>id of the current execution</returns>
-        Task<int> Start(object realTimeVisualizer);
+        Task<int> Start(VideoExecution videoExecution, object realTimeVisualizer);
 
         /// <summary>
         /// Stops the Orchestration
