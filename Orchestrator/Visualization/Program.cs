@@ -19,8 +19,6 @@ namespace Visualization
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 graph = new Form1(10);
 
-            Application.Run(graph);
-
             Scores s1 = new Scores();
             s1.anger = 1;
             graph.addEmoPoint(s1);
@@ -41,7 +39,7 @@ namespace Visualization
             s5.happiness = 1.9;
             graph.addEmoPoint(s5);
 
-            
+            Application.Run(graph);
         }
     }
 }
