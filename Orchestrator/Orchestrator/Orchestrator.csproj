@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CamEmoOrc\CamEmoOrc.csproj">
+      <Project>{5055cebd-8ba1-4c30-b67f-9b7052250430}</Project>
+      <Name>CamEmoOrc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmotionalModels\EmotionalModels.csproj">
       <Project>{a17b5861-adb8-44ea-8e21-fe08e46f7b27}</Project>
       <Name>EmotionalModels</Name>

@@ -31,8 +31,9 @@ namespace Emotional.Core
 
         public async Task<int> BeginExecution(VideoExecution vid)
         {
-            ExecutionId = await DbLayer.GetExecutionContext(vid);
-            return ExecutionId;
+            //ExecutionId = await DbLayer.GetExecutionContext(vid);
+            return 0;
+            //return ExecutionId;
         }
 
         public async Task<OrderedDictionary> FinishExecution()
