@@ -67,11 +67,17 @@ namespace Emotional.Utility
                 content.Headers.Add("Content-Type", "application/octet-stream");
                 response = await client.PostAsync(uri, content);
             }
-
+            /*
+            using (var stream = File.Create("test.jpg"))
+            {
+                input.Seek(0, SeekOrigin.Begin);
+                input.CopyTo(stream);
+            }
+            */
             var stringRes = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<EmotionScore>>(stringRes);
 
-            return result[0];
+            return (result.Count > 0) ? result[0] : new EmotionScore();
         }
 
     }
