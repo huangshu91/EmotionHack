@@ -79,6 +79,9 @@ namespace WPFMediaPlayer
                     width = (int) mediaElement.ActualWidth
                 };
                 //Need to pass the visualizer
+
+
+
                 _Orchestrator.Start(vidEx, null);
             }
 
