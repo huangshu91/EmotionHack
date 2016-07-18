@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamEmoOrc", "CamEmoOrc\CamE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualization", "Visualization\Visualization.csproj", "{FC7A4DB3-D35C-4045-A613-82217B2EC442}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeVisualization", "RuntimeVisualization\RuntimeVisualization.csproj", "{86754C6E-2B33-4AA3-9059-807A1975E028}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,7 +51,6 @@ Global
 		{ED17B55B-A66A-4634-8EDE-1CC40FCD85D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9CCF9E2-CF8F-45B1-93BB-F1200DFA6A93}.Release|Any CPU.Deploy.0 = Release|Any CPU
@@ -77,6 +78,10 @@ Global
 		{FC7A4DB3-D35C-4045-A613-82217B2EC442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC7A4DB3-D35C-4045-A613-82217B2EC442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC7A4DB3-D35C-4045-A613-82217B2EC442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86754C6E-2B33-4AA3-9059-807A1975E028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86754C6E-2B33-4AA3-9059-807A1975E028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86754C6E-2B33-4AA3-9059-807A1975E028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86754C6E-2B33-4AA3-9059-807A1975E028}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

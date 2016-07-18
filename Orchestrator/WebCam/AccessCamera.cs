@@ -27,6 +27,10 @@ namespace WebCam
             ms = new System.IO.MemoryStream();
             webcam = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             cam = new VideoCaptureDevice(webcam[0].MonikerString);
+
+            var test = cam.SnapshotCapabilities;
+
+
             cam.NewFrame += new NewFrameEventHandler(cam_NewFrame);
         }
 
@@ -37,7 +41,6 @@ namespace WebCam
         {
             cam.Start();
         }
-
 
         private void cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
@@ -63,6 +66,7 @@ namespace WebCam
         /// <returns></returns>
         public MemoryStream cam_TakePic()
         {
+            
             return ms;
         }
     }

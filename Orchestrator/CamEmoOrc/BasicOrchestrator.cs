@@ -41,7 +41,7 @@ namespace CamEmoOrc
                 _togglePlay = true;
                 executionId = _EmoClient.BeginExecution(videoExecution).Result;
                 _OrcInstance = Task.Factory.StartNew(() => { CaptureAndSend(); });
-                _OrcInstance.Start();
+                //_OrcInstance.Start();
             }
             catch (Exception ex)
             {
@@ -56,7 +56,11 @@ namespace CamEmoOrc
             while (_togglePlay)
             {
                 MemoryStream pic = _Camera.cam_TakePic();
-                EmotionScore emoScore = _EmoClient.GetEmotion(pic, DateTime.Now).Result;
+
+                if (pic != null && pic.Length > 0)
+                {
+                    EmotionScore emoScore = _EmoClient.GetEmotion(pic, DateTime.Now).Result;
+                }
                 /// DO SOMETHING WITH THE SCORE!!!
                 Thread.Sleep(_sampleRate);
             }
@@ -66,7 +70,7 @@ namespace CamEmoOrc
         public async Task<OrderedDictionary> Stop()
         {
             return await new Task<OrderedDictionary>(() => { return new OrderedDictionary(); });
-            //throw new NotImplementedException();
+
         }
     }
 }
