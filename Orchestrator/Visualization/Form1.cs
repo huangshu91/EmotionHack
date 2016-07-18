@@ -25,34 +25,20 @@ namespace Visualization
         {
             InitializeComponent();
             m_maxPointCount = maxPointNumber;
-            combinedChart.Series.Clear();
-            angerChart.Series.Clear();
-
-            //Setting the boundaries for the x axis so it never autoresizes.
-            //TODO: will change the -4 and 4 according to emotion API's return values.
-            combinedChart.ChartAreas[0].AxisY.Minimum = -4;
-            combinedChart.ChartAreas[0].AxisY.Maximum = 4;
-            combinedChart.ChartAreas[0].AxisX.Minimum = 1;
-            combinedChart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
-
-            angerChart.ChartAreas[0].AxisY.Minimum = -4;
-            angerChart.ChartAreas[0].AxisY.Maximum = 4;
-            angerChart.ChartAreas[0].AxisX.Minimum = 1;
-            angerChart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
-
-            Series series = this.combinedChart.Series.Add("Aggregated Emotion");
-            combinedChart.Series["Aggregated Emotion"].ChartType =
-                    SeriesChartType.FastLine;
-            combinedChart.Series["Aggregated Emotion"].Color = Color.Blue;
-
-            Series angerSeries = this.angerChart.Series.Add("Anger");
-            angerChart.Series["Anger"].ChartType = SeriesChartType.FastLine;
-            angerChart.Series["Anger"].Color = Color.Red;
+            initializeChart(combinedChart, "Aggregated Emotion", Color.Blue);
+            initializeChart(angerChart, "Anger", Color.Red);
+            initializeChart(happinessChart, "Happiness", Color.Green);
+            initializeChart(surpriseChart, "Surprise", Color.Orange);
+            initializeChart(sadnessChart, "Sadness", Color.DimGray);
+            initializeChart(contemptChart, "Contempt", Color.MediumPurple);
+            initializeChart(neutralChart, "Neutral", Color.Brown);
+            initializeChart(disgustChart, "Disgust", Color.Yellow);
+            initializeChart(fearChart, "Fear", Color.Black);
         }
 
-        public void ShowAggregatedGraph(Scores[,] emoScoresList)
+        public void ShowGraphs(Scores[,] emoScoresList)
         {
-            Scores [,] emoScoresAll = emoScoresList;
+            Scores[,] emoScoresAll = emoScoresList;
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,
                 aveHappiness = 0, aveNeutral = 0, aveSadness = 0, aveSurprise = 0;
             for (int j = 0; j < emoScoresAll.GetLength(1); j++)
@@ -80,6 +66,13 @@ namespace Visualization
                     (aggregateEmotionPoint(aveAnger, aveContempt, aveDisgust,
                     aveFear, aveHappiness, aveNeutral, aveSadness, aveSurprise));
                 angerChart.Series["Anger"].Points.AddY(aveAnger);
+                happinessChart.Series["Happiness"].Points.AddY(aveHappiness);
+                surpriseChart.Series["Surprise"].Points.AddY(aveSurprise);
+                sadnessChart.Series["Sadness"].Points.AddY(aveSadness);
+                contemptChart.Series["Contempt"].Points.AddY(aveContempt);
+                neutralChart.Series["Neutral"].Points.AddY(aveNeutral);
+                disgustChart.Series["Disgust"].Points.AddY(aveDisgust);
+                fearChart.Series["Fear"].Points.AddY(aveFear);
             }
         }
 
@@ -104,6 +97,28 @@ namespace Visualization
             double aggregatedEmotion = (-1) * anger + (-1) * contempt + (-1) * disgust + (-1) * fear
                 + happiness + 0 * neutral + (-0.5) * sadness + (0) * surprise;
             return aggregatedEmotion;
+        }
+
+        private void initializeChart(Chart chart, String seriesName, Color color)
+        {
+            chart.Series.Clear();
+
+            //Setting the boundaries for the x axis so it never autoresizes.
+            //TODO: will change the -4 and 4 according to emotion API's return values.
+            chart.ChartAreas[0].AxisY.Minimum = -4;
+            chart.ChartAreas[0].AxisY.Maximum = 4;
+            chart.ChartAreas[0].AxisX.Minimum = 1;
+            chart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
+
+            Series series = chart.Series.Add(seriesName);
+            chart.Series[seriesName].ChartType =
+                    SeriesChartType.FastLine;
+            chart.Series[seriesName].Color = color;
+        }
+
+        private void Aggregated_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

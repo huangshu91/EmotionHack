@@ -59,7 +59,7 @@ namespace Visualization
             testScores[2, 1] = s32;
             testScores[2, 2] = s33;
 
-            graph.ShowAggregatedGraph(testScores);
+            graph.ShowGraphs(testScores);
             Application.Run(graph);
         }
     }
