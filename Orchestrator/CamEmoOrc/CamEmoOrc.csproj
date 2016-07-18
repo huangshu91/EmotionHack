@@ -53,6 +53,10 @@
       <Project>{4226ce5f-117e-4c4d-9a67-7805a3b81020}</Project>
       <Name>Emotional</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RuntimeVisualization\RuntimeVisualization.csproj">
+      <Project>{86754c6e-2b33-4aa3-9059-807a1975e028}</Project>
+      <Name>RuntimeVisualization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebCam\WebCam.csproj">
       <Project>{e141ff70-cac2-412c-abae-62cccae929f0}</Project>
       <Name>WebCam</Name>

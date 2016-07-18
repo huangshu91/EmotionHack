@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace CamEmoOrc
 {
+    using RuntimeVisualization;
+
     /// <summary>
     /// Orchestrates the capturing of images from the Camera Client and obtaining scores from the emotional client
     /// </summary>
@@ -19,7 +21,7 @@ namespace CamEmoOrc
         /// <param name="videoExecution">The video execution instance</param>
         /// <param name="realTimeVisualizer">The object that is showing the visualizations of the realtime scores</param>
         /// <returns>id of the current execution</returns>
-        Task<int> Start(VideoExecution videoExecution, object realTimeVisualizer);
+        Task<int> Start(VideoExecution videoExecution, EmotionGraph realTimeVisualizer);
 
         /// <summary>
         /// Stops the Orchestration

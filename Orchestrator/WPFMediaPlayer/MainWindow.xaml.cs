@@ -18,6 +18,8 @@ using System.Windows.Shapes;
 
 namespace WPFMediaPlayer
 {
+    using RuntimeVisualization;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -80,7 +82,9 @@ namespace WPFMediaPlayer
                 };
                 //Need to pass the visualizer
 
-
+                //var runtime = new EmotionGraph();
+                var runtime = new RuntimeVisualization.MainWindow();
+                runtime.Show();
 
                 _Orchestrator.Start(vidEx, null);
             }

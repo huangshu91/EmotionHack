@@ -12,6 +12,8 @@ using WebCam;
 
 namespace CamEmoOrc
 {
+    using RuntimeVisualization;
+
     public class BasicOrchestrator : IOrchestrator
     {
         private IEmotionClient _EmoClient;
@@ -28,12 +30,12 @@ namespace CamEmoOrc
             _togglePlay = false;
         }
 
-        public async Task<int> Start(VideoExecution videoExecution, object realTimeVisualizer)
+        public async Task<int> Start(VideoExecution videoExecution, EmotionGraph realTimeVisualizer)
         {
             return await Task.Factory.StartNew<int>(() => StartExecution(videoExecution, realTimeVisualizer));
         }
 
-        private int StartExecution(VideoExecution videoExecution, object realTimeVisualizer)
+        private int StartExecution(VideoExecution videoExecution, EmotionGraph realTimeVisualizer)
         {
             int executionId = -1;
             try
@@ -59,7 +61,8 @@ namespace CamEmoOrc
 
                 if (pic != null && pic.Length > 0)
                 {
-                    EmotionScore emoScore = _EmoClient.GetEmotion(pic, DateTime.Now).Result;
+                    //EmotionScore emoScore = _EmoClient.GetEmotion(pic, DateTime.Now).Result;
+                    var score = _EmoClient.GetDummyEmotion(DateTime.Now, null).Result;
                 }
                 /// DO SOMETHING WITH THE SCORE!!!
                 Thread.Sleep(_sampleRate);
