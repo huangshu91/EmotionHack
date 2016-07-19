@@ -80,9 +80,7 @@ namespace WPFMediaPlayer
                     height = (int) mediaElement.ActualHeight,
                     width = (int) mediaElement.ActualWidth
                 };
-                //Need to pass the visualizer
 
-                //var runtime = new EmotionGraph();
                 var runtime = new RuntimeVisualization.MainWindow();
                 runtime.Show();
 

@@ -18,8 +18,8 @@ namespace Emotional.Core
         private EmoHttpClient client { get; set; }
         private IDataLayer DbLayer { get; set; }
 
-        private OrderedDictionary history = new OrderedDictionary();
-        private OrderedDictionary aggHistory = new OrderedDictionary();
+        public OrderedDictionary history { get; private set;  }
+        public OrderedDictionary aggHistory { get; private set; }
 
         private int ExecutionId { get; set; }
 
@@ -27,6 +27,8 @@ namespace Emotional.Core
         {
             client = new EmoHttpClient();
             DbLayer = new SQLDataLayer();
+            history = new OrderedDictionary();
+            aggHistory = new OrderedDictionary();
         }
 
         public async Task<int> BeginExecution(VideoExecution vid)

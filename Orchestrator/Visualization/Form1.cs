@@ -13,6 +13,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Visualization
 {
+    using DataStore;
+
     /// <summary>
     /// Definition of the dynamics graph(s) that reflects users' emotions.
     /// </summary>
@@ -74,6 +76,17 @@ namespace Visualization
             Scores[,] emoScoresAll = emoScoresList;
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,
                 aveHappiness = 0, aveNeutral = 0, aveSadness = 0, aveSurprise = 0;
+
+            /*
+            List<EmotionScore> scores;
+
+            using (var dbAccess = new SQLDataLayer())
+            {
+                scores = await dbAccess.WithDataLayerAsync<List<EmotionScore>>
+                    (async db => await db.GetFullScoreHistory());
+            }
+            */
+
             for (int j = 0; j < emoScoresAll.GetLength(1); j++)
             {
                 for (int i = 0; i < emoScoresAll.GetLength(0); i++)

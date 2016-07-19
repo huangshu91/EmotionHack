@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Emotional.Models
 {
-
     public class EmotionScore
     {
         public FaceRectangle faceRectangle { get; set; }
@@ -17,6 +17,29 @@ namespace Emotional.Models
         public DateTime timeStamp { get; set; }
 
         public int executionId { get; set; }
+        
+        public EmotionScore() { }
+
+        public EmotionScore(SqlDataReader row)
+        {
+            executionId = Convert.ToInt32(row["ExecutionId"]);
+
+            scores = new Models.Scores()
+            {
+                anger = (double)row["Anger"],
+                contempt = (double)row["Contempt"],
+                disgust = (double)row["Disgust"],
+                fear = (double)row["Fear"],
+                happiness = (double)row["Happiness"],
+                neutral = (double)row["Neutral"],
+                sadness = (double)row["Sadness"],
+                surprise = (double)row["Surprise"]
+            };
+
+            startTime = (DateTime)row["StartTime"];
+            endTime = (DateTime)row["EndTime"];
+            timeStamp = (DateTime)row["TimeStamp"];
+        }
     }
 
     public class FaceRectangle

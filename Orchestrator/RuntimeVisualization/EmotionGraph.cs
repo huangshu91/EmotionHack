@@ -6,6 +6,8 @@
     using OxyPlot;
     using OxyPlot.Series;
 
+    using Emotional.Models;
+
     public class EmotionGraph
     {
         public EmotionGraph()
@@ -39,6 +41,11 @@
             testy *= -1;
 
             MyModel.InvalidatePlot(true);
+        }
+        
+        public void UpdateScore(EmotionScore emo)
+        {
+            //display the score in some way
         }
 
         public int testx = 0;

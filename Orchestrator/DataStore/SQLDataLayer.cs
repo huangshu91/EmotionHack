@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 using Emotional.Models;
 
@@ -91,7 +92,7 @@ namespace DataStore
 
             if (values.Count == 0)
             {
-                return false;
+                return false;;
             }
 
             var valuesString = String.Join(",", values);
@@ -104,7 +105,42 @@ namespace DataStore
 
         public async Task<List<EmotionScore>> GetScoresByExecutionId(int executionId)
         {
-            return null;
+            string query = @"SELECT * FROM [emo].[EmotionScore] WHERE Id = @ExecutionId;";
+            List<EmotionScore> results = new List<EmotionScore>();
+
+            using (var reader = await this.ExecuteReaderAsync(query, false, "@ExecutionId", executionId))
+            {
+                if (reader.Read())
+                {
+                    EmotionScore score = new EmotionScore(reader);
+                    results.Add(score);
+                }
+            }
+
+            return results;
+        }
+
+        public async Task<List<EmotionScore>> GetScoresFilteredBy(int something)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<EmotionScore>> GetFullScoreHistory()
+        {
+            string query = @"SELECT * FROM [emo].EmotionScore];";
+
+            List<EmotionScore> results = new List<EmotionScore>();
+
+            using (var reader = await this.ExecuteReaderAsync(query, false))
+            {
+                if (reader.Read())
+                {
+                    EmotionScore score = new EmotionScore(reader);
+                    results.Add(score);
+                }
+            }
+
+            return results;
         }
     }
 }

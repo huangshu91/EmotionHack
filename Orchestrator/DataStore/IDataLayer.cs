@@ -18,6 +18,12 @@ namespace DataStore
 
         Task<bool> FinishExecution(OrderedDictionary scores, int executionId);
 
+        Task<List<EmotionScore>> GetScoresFilteredBy(int something);
+
+        Task<List<EmotionScore>> GetFullScoreHistory();
+
+        Task<List<EmotionScore>> GetScoresByExecutionId(int executionId);
+
         Task WithDataLayerAsync(Func<SQLDataLayer, Task> protectedFunction);
 
         Task<T> WithDataLayerAsync<T>(Func<SQLDataLayer, Task<T>> protectedFunction);
