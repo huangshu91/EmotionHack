@@ -81,6 +81,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataStore\DataStore.csproj">
+      <Project>{ed17b55b-a66a-4634-8ede-1cc40fcd85d2}</Project>
+      <Name>DataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmotionalModels\EmotionalModels.csproj">
       <Project>{A17B5861-ADB8-44EA-8E21-FE08E46F7B27}</Project>
       <Name>EmotionalModels</Name>
