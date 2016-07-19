@@ -33,7 +33,40 @@ namespace Visualization
             initializeChart(contemptChart, "Contempt", Color.MediumPurple);
             initializeChart(neutralChart, "Neutral", Color.Brown);
             initializeChart(disgustChart, "Disgust", Color.Yellow);
-            initializeChart(fearChart, "Fear", Color.Black);
+            initializeChart(fearChart, "Fear", Color.RosyBrown);
+
+            Series anger = combinedChart.Series.Add("Anger");
+            combinedChart.Series["Anger"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Anger"].Color = Color.Red;
+            Series happiness = combinedChart.Series.Add("Happiness");
+            combinedChart.Series["Happiness"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Happiness"].Color = Color.Green;
+            Series surprise = combinedChart.Series.Add("Surprise");
+            combinedChart.Series["Surprise"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Surprise"].Color = Color.Orange;
+            Series sadness = combinedChart.Series.Add("Sadness");
+            combinedChart.Series["Sadness"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Sadness"].Color = Color.DimGray;
+            Series contempt = combinedChart.Series.Add("Contempt");
+            combinedChart.Series["Contempt"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Contempt"].Color = Color.MediumPurple;
+            Series neutral = combinedChart.Series.Add("Neutral");
+            combinedChart.Series["Neutral"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Neutral"].Color = Color.Brown;
+            Series disgust = combinedChart.Series.Add("Disgust");
+            combinedChart.Series["Disgust"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Disgust"].Color = Color.Yellow;
+            Series fear = combinedChart.Series.Add("Fear");
+            combinedChart.Series["Fear"].ChartType =
+                    SeriesChartType.FastLine;
+            combinedChart.Series["Fear"].Color = Color.RosyBrown;
         }
 
         public void ShowGraphs(Scores[,] emoScoresList)
@@ -65,6 +98,15 @@ namespace Visualization
                 combinedChart.Series["Aggregated Emotion"].Points.AddY
                     (aggregateEmotionPoint(aveAnger, aveContempt, aveDisgust,
                     aveFear, aveHappiness, aveNeutral, aveSadness, aveSurprise));
+                combinedChart.Series["Anger"].Points.AddY(aveAnger);
+                combinedChart.Series["Happiness"].Points.AddY(aveHappiness);
+                combinedChart.Series["Surprise"].Points.AddY(aveSurprise);
+                combinedChart.Series["Sadness"].Points.AddY(aveSadness);
+                combinedChart.Series["Contempt"].Points.AddY(aveContempt);
+                combinedChart.Series["Neutral"].Points.AddY(aveNeutral);
+                combinedChart.Series["Disgust"].Points.AddY(aveDisgust);
+                combinedChart.Series["Fear"].Points.AddY(aveFear);
+
                 angerChart.Series["Anger"].Points.AddY(aveAnger);
                 happinessChart.Series["Happiness"].Points.AddY(aveHappiness);
                 surpriseChart.Series["Surprise"].Points.AddY(aveSurprise);
