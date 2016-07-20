@@ -21,7 +21,7 @@ namespace CamEmoOrc
         /// <param name="videoExecution">The video execution instance</param>
         /// <param name="realTimeVisualizer">The object that is showing the visualizations of the realtime scores</param>
         /// <returns>id of the current execution</returns>
-        Task<int> Start(VideoExecution videoExecution, EmotionGraph realTimeVisualizer);
+        Task<int> Start(VideoExecution videoExecution, MainWindow realTimeVisualizer);
 
         /// <summary>
         /// Stops the Orchestration

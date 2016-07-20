@@ -8,19 +8,21 @@
     /// </summary>
     public partial class MainWindow : Window
     {
-        EmotionGraph model;
+        private EmotionGraph Model;
 
         public MainWindow()
         {
-            model = new EmotionGraph();
-            DataContext = model;
+            //model = new EmotionGraph();
+            //DataContext = model;
 
             InitializeComponent();
+
+            Model = (EmotionGraph) this.DataContext;
         }
 
         public void UpdateData(EmotionScore emo)
         {
-            model.UpdateScore(emo);
+            Model.UpdateScore(emo);
         }
     }
 }

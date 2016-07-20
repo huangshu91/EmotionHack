@@ -29,7 +29,7 @@
             this.MyModel.IsLegendVisible = false;
 
             Timer myTimer = new Timer();
-            myTimer.Elapsed += new ElapsedEventHandler(UpdateModel);
+            //myTimer.Elapsed += new ElapsedEventHandler(UpdateModel);
             myTimer.Interval = 1000; // 1000 ms is one second
             myTimer.Start();
         }
@@ -37,15 +37,19 @@
         public void UpdateModel(object source, ElapsedEventArgs e)
         {
             //MyModel.Series.Clear();
-            Line.Points.Add(new DataPoint(testx++, testy));
-            testy *= -1;
+            //Line.Points.Add(new DataPoint(testx++, testy));
+            //testy *= -1;
 
-            MyModel.InvalidatePlot(true);
+            //MyModel.InvalidatePlot(true);
         }
         
         public void UpdateScore(EmotionScore emo)
         {
-            //display the score in some way
+            //display the score in some way            
+            Line.Points.Add(new DataPoint(testx++, testy));
+            testy *= -1;
+
+            MyModel.InvalidatePlot(true);
         }
 
         public int testx = 0;

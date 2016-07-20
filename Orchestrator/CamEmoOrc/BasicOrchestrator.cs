@@ -21,6 +21,7 @@ namespace CamEmoOrc
         private TimeSpan _sampleRate;
         private bool _togglePlay;
         private Task _OrcInstance;
+        private MainWindow _runtimeVisual;
 
         public BasicOrchestrator(double samplingRate)
         {
@@ -30,12 +31,13 @@ namespace CamEmoOrc
             _togglePlay = false;
         }
 
-        public async Task<int> Start(VideoExecution videoExecution, EmotionGraph realTimeVisualizer)
+        public async Task<int> Start(VideoExecution videoExecution, MainWindow realTimeVisualizer)
         {
-            return await Task.Factory.StartNew<int>(() => StartExecution(videoExecution, realTimeVisualizer));
+            _runtimeVisual = realTimeVisualizer;
+            return await Task.Factory.StartNew<int>(() => StartExecution(videoExecution));
         }
 
-        private int StartExecution(VideoExecution videoExecution, EmotionGraph realTimeVisualizer)
+        private int StartExecution(VideoExecution videoExecution)
         {
             int executionId = -1;
             try
@@ -43,7 +45,6 @@ namespace CamEmoOrc
                 _togglePlay = true;
                 executionId = _EmoClient.BeginExecution(videoExecution).Result;
                 _OrcInstance = Task.Factory.StartNew(() => { CaptureAndSend(); });
-                //_OrcInstance.Start();
             }
             catch (Exception ex)
             {
@@ -63,6 +64,7 @@ namespace CamEmoOrc
                 {
                     //EmotionScore emoScore = _EmoClient.GetEmotion(pic, DateTime.Now).Result;
                     var score = _EmoClient.GetDummyEmotion(DateTime.Now, null).Result;
+                    _runtimeVisual.UpdateData(score);
                 }
                 /// DO SOMETHING WITH THE SCORE!!!
                 Thread.Sleep(_sampleRate);

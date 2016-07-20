@@ -84,7 +84,7 @@ namespace WPFMediaPlayer
                 var runtime = new RuntimeVisualization.MainWindow();
                 runtime.Show();
 
-                _Orchestrator.Start(vidEx, null);
+                _Orchestrator.Start(vidEx, runtime);
             }
 
             if (!_playState) mediaElement.Play();
