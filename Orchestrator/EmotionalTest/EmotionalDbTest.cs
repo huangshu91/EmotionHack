@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,6 +20,15 @@ namespace EmotionalTest
         public EmotionalDbTest()
         {
             ConnectionString = _connection;
+        }
+
+        [TestMethod]
+        public async Task GetScoreHistory()
+        {
+            IDataLayer dbAccess = new SQLDataLayer(_connection);
+            var result = await dbAccess.WithDataLayerAsync<List<EmotionScore>>(async db => await db.GetFullScoreHistory());
+
+            Assert.AreNotEqual(result.Count, 0);
         }
 
         [TestMethod]

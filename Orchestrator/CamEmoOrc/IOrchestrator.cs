@@ -24,6 +24,11 @@ namespace CamEmoOrc
         Task<int> Start(VideoExecution videoExecution, MainWindow realTimeVisualizer);
 
         /// <summary>
+        /// Finish the execution and upload scores.
+        /// </summary>
+        void FinishExecution();
+
+        /// <summary>
         /// Stops the Orchestration
         /// </summary>
         /// <returns>The entire set of scores for the current execution</returns>

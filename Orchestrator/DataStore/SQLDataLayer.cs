@@ -14,7 +14,7 @@ namespace DataStore
     /// </summary>
     public class SQLDataLayer : DataAccessLayerBase, IDataLayer
     {
-        private string _connection = @"Server=tcp:emotiondb.database.windows.net,1433;Database=EmotionHack;User ID=emotionhack@emotiondb;Password=@NYTH!NG123;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
+        private string _connection = @"Server=tcp:emotiondb.database.windows.net,1433;Database=EmotionHackPPE;User ID=emotionhack@emotiondb;Password=@NYTH!NG123;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
 
         /// <summary>
         /// Sets up the connection to the SQL database
@@ -110,7 +110,7 @@ namespace DataStore
 
             using (var reader = await this.ExecuteReaderAsync(query, false, "@ExecutionId", executionId))
             {
-                if (reader.Read())
+                while (reader.Read())
                 {
                     EmotionScore score = new EmotionScore(reader);
                     results.Add(score);
@@ -127,13 +127,13 @@ namespace DataStore
 
         public async Task<List<EmotionScore>> GetFullScoreHistory()
         {
-            string query = @"SELECT * FROM [emo].EmotionScore];";
+            string query = @"SELECT * FROM [emo].[EmotionScore];";
 
             List<EmotionScore> results = new List<EmotionScore>();
 
             using (var reader = await this.ExecuteReaderAsync(query, false))
             {
-                if (reader.Read())
+                while (reader.Read())
                 {
                     EmotionScore score = new EmotionScore(reader);
                     results.Add(score);

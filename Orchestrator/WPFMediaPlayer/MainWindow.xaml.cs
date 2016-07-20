@@ -60,7 +60,15 @@ namespace WPFMediaPlayer
                     WindowState = WindowState.Normal;
                     WindowStyle = WindowStyle.SingleBorderWindow;
                     break;
+                case Key.T:
+                    Testing();
+                    break;
             }
+        }
+
+        private void Testing()
+        {
+            _Orchestrator.FinishExecution();
         }
 
         private void Stop()

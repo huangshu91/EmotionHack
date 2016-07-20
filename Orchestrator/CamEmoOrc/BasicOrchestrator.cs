@@ -72,6 +72,11 @@ namespace CamEmoOrc
             _Camera.cam_Stop();
         }
 
+        public void FinishExecution()
+        {
+            Task.Factory.StartNew(() => { _EmoClient.FinishExecution(); });
+        }
+
         public async Task<OrderedDictionary> Stop()
         {
             return await new Task<OrderedDictionary>(() => { return new OrderedDictionary(); });

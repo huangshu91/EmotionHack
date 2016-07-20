@@ -33,12 +33,12 @@ namespace Emotional.Core
 
         public async Task<int> BeginExecution(VideoExecution vid)
         {
-            //ExecutionId = await DbLayer.GetExecutionContext(vid);
-            return 0;
-            //return ExecutionId;
+            ExecutionId = await DbLayer.GetExecutionContext(vid);
+            //return 0;
+            return ExecutionId;
         }
 
-        public async Task<OrderedDictionary> FinishExecution()
+        public async Task FinishExecution()
         {
             var result = await DbLayer.FinishExecution(history, ExecutionId);
 
@@ -46,8 +46,6 @@ namespace Emotional.Core
             {
                 LogWriter.Instance.WriteToLog(string.Format("was not able to finish execution for executionId {0}", ExecutionId));
             }
-
-            return history;
         }
 
         public async Task<EmotionScore> GetEmotion(Stream stream, DateTime time)

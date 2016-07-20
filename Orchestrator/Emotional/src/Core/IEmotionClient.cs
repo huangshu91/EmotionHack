@@ -17,8 +17,8 @@ namespace Emotional.Core
         /// <summary>
         /// Finishes the current exeuction
         /// </summary>
-        /// <returns>The scores of this instance.</returns>
-        Task<OrderedDictionary> FinishExecution();
+        /// <returns></returns>
+        Task FinishExecution();
         /// <summary>
         /// Passes across a snapshot of the image from the web cam to the Emotional API
         /// </summary>
