@@ -33,14 +33,18 @@ namespace Emotional.Core
 
         public async Task<int> BeginExecution(VideoExecution vid)
         {
-            ExecutionId = await DbLayer.GetExecutionContext(vid);
+            //ExecutionId = await DbLayer.GetExecutionContext(vid);
+
+            ExecutionId = await DbLayer.WithDataLayerAsync<int>(async db => await db.GetExecutionContext(vid));
             //return 0;
             return ExecutionId;
         }
 
         public async Task FinishExecution()
         {
-            var result = await DbLayer.FinishExecution(history, ExecutionId);
+            //var result = await DbLayer.FinishExecution(history, ExecutionId);
+
+            var result = await DbLayer.WithDataLayerAsync<bool>(async db => await db.FinishExecution(history, ExecutionId));
 
             if (!result)
             {
