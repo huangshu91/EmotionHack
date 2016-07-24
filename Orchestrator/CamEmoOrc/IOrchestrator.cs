@@ -33,5 +33,7 @@ namespace CamEmoOrc
         /// </summary>
         /// <returns>The entire set of scores for the current execution</returns>
         Task<OrderedDictionary> Stop();
+
+        List<List<EmotionScore>> getHistory();
     }
 }

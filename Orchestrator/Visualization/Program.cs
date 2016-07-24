@@ -15,11 +15,12 @@ namespace Visualization
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Form1 graph = new Form1(3);
-            graph.ShowGraphs();
-            Application.Run(graph);
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //var result = _Orchestrator.getHistory();
+            //Form1 graph = new Form1(Form1 graph = new Form1(result.Count));
+            //graph.ShowGraphs(result);
+            //Application.Run(graph);
         }
     }
 }

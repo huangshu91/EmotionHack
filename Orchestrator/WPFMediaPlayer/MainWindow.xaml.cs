@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 
 namespace WPFMediaPlayer
 {
+    using Visualization;
     using RuntimeVisualization;
 
     /// <summary>
@@ -63,7 +64,22 @@ namespace WPFMediaPlayer
                 case Key.T:
                     Testing();
                     break;
+                case Key.L:
+                    Show();
+                    break;
             }
+        }
+
+        private void Show()
+        {
+            //TODO vivek: Hook up Orchestrator with final visualization(Form)
+            //We will want to figure out a way to display a Form from here. Code commented out is how the call would work in Program.cs in visualization 
+            var result = _Orchestrator.getHistory();
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Form1 graph = new Form1(result.Count);
+            //Application.Run(graph);
+            //graph.ShowGraphs(result);
         }
 
         private void Testing()

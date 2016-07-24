@@ -79,13 +79,10 @@ namespace Visualization
             }
         }
 
-        public void ShowGraphs()
+        public void ShowGraphs(List<List<EmotionScore>> scores)
         {
-            //Scores[,] emoScoresAll = emoScoresList;
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,
                 aveHappiness = 0, aveNeutral = 0, aveSadness = 0, aveSurprise = 0;
-
-            //List<List<EmotionScore>> scores = await GetScores();
 
             foreach (List<EmotionScore> scorePerTime in scores)
             {
