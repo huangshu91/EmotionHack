@@ -14,7 +14,7 @@ namespace Emotional.Models
 
         public DateTime endTime { get; set; }
 
-        public DateTime timeStamp { get; set; }
+        public double timeStamp { get; set; }
 
         public int executionId { get; set; }
         
@@ -38,7 +38,7 @@ namespace Emotional.Models
 
             startTime = (DateTime)row["StartTime"];
             endTime = (DateTime)row["EndTime"];
-            timeStamp = (DateTime)row["TimeStamp"];
+            timeStamp = (double)row["TimeStamp"];
         }
     }
 
