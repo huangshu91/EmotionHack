@@ -145,6 +145,7 @@ namespace DataStore
                         }
 
                         scoreExe = new List<EmotionScore>();
+                        prevExe = score.executionId;
                     }
                     scoreExe.Add(score);
                 }
