@@ -127,7 +127,7 @@ namespace DataStore
 
         public async Task<List<List<EmotionScore>>> GetFullScoreHistory()
         {
-            string query = @"SELECT * FROM [emo].[EmotionScore] ORDER BY [ExecutionId], [TimeStamp];";
+            string query = @"SELECT * FROM [emo].[EmotionScore] ORDER BY [TimeStamp], [ExecutionId];";
 
             List<List<EmotionScore>> results = new List<List<EmotionScore>>();
             List<EmotionScore> scoreExe = null;
