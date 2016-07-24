@@ -6,6 +6,8 @@ using Emotional.Models;
 
 namespace Emotional.Core
 {
+    using System.Collections.Generic;
+
     public interface IEmotionClient
     {
         /// <summary>
@@ -40,5 +42,7 @@ namespace Emotional.Core
         /// <param name="stream"></param>
         /// <returns></returns>
         Task<EmotionScore> GetDummyEmotion(double time, MemoryStream stream = null);
+
+        Task<List<List<EmotionScore>>> GetHistory();
     }
 }
