@@ -81,7 +81,7 @@ namespace DataStore
 
             foreach (DictionaryEntry entry in scores)
             {
-                string val = @"({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, '{9}', '{10}', '{11}')";
+                string val = @"({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, '{9}', '{10}', {11})";
                 EmotionScore score = entry.Value as EmotionScore;
                 val = string.Format(val, executionId, score.scores.anger, score.scores.contempt, score.scores.disgust, score.scores.fear, 
                                          score.scores.happiness, score.scores.neutral, score.scores.sadness, score.scores.surprise, 

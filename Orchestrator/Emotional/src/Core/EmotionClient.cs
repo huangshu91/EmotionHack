@@ -74,7 +74,10 @@ namespace Emotional.Core
             scores.executionId = ExecutionId;
             scores.timeStamp = time;
 
-            history.Add(time, scores);
+            if (scores.scores != null)
+            {
+                history.Add(time, scores);
+            }
             return scores;
         }
 

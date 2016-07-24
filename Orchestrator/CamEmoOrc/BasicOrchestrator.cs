@@ -62,7 +62,7 @@ namespace CamEmoOrc
             while (_togglePlay)
             {
                 MemoryStream pic = _Camera.cam_TakePic();
-                sampleTime += (double) _sampleRate.Milliseconds;
+                sampleTime += _sampleRate.TotalMilliseconds;
 
                 if (pic != null && pic.Length > 0)
                 {
