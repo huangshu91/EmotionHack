@@ -79,7 +79,7 @@ namespace Visualization
             }
         }
 
-        public async Task ShowGraphs()
+        public void ShowGraphs()
         {
             //Scores[,] emoScoresAll = emoScoresList;
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,
@@ -87,27 +87,28 @@ namespace Visualization
 
             List<List<EmotionScore>> scores = GetScores().Result;
 
-            for (int j = 0; j < emoScoresAll.GetLength(1); j++)
+            foreach (List<EmotionScore> scorePerTime in scores)
             {
-                for (int i = 0; i < emoScoresAll.GetLength(0); i++)
+                foreach (EmotionScore userEScore in scorePerTime)
                 {
-                    aveAnger += emoScoresAll[i, j].anger;
-                    aveContempt += emoScoresAll[i, j].contempt;
-                    aveDisgust += emoScoresAll[i, j].disgust;
-                    aveFear += emoScoresAll[i, j].fear;
-                    aveHappiness += emoScoresAll[i, j].happiness;
-                    aveNeutral += emoScoresAll[i, j].neutral;
-                    aveSadness += emoScoresAll[i, j].sadness;
-                    aveSurprise += emoScoresAll[i, j].surprise;
+                    Scores userScore = userEScore.scores;
+                    aveAnger += userScore.anger;
+                    aveContempt += userScore.contempt;
+                    aveDisgust += userScore.disgust;
+                    aveFear += userScore.fear;
+                    aveHappiness += userScore.happiness;
+                    aveNeutral += userScore.neutral;
+                    aveSadness += userScore.sadness;
+                    aveSurprise += userScore.surprise;
                 }
-                aveAnger /= emoScoresAll.GetLength(0);
-                aveContempt /= emoScoresAll.GetLength(0);
-                aveDisgust /= emoScoresAll.GetLength(0);
-                aveFear /= emoScoresAll.GetLength(0);
-                aveHappiness /= emoScoresAll.GetLength(0);
-                aveNeutral /= emoScoresAll.GetLength(0);
-                aveSadness /= emoScoresAll.GetLength(0);
-                aveSurprise /= emoScoresAll.GetLength(0);
+                aveAnger /= scorePerTime.Count;
+                aveContempt /= scorePerTime.Count;
+                aveDisgust /= scorePerTime.Count;
+                aveFear /= scorePerTime.Count;
+                aveHappiness /= scorePerTime.Count;
+                aveNeutral /= scorePerTime.Count;
+                aveSadness /= scorePerTime.Count;
+                aveSurprise /= scorePerTime.Count;
                 combinedChart.Series["Aggregated Emotion"].Points.AddY
                     (aggregateEmotionPoint(aveAnger, aveContempt, aveDisgust,
                     aveFear, aveHappiness, aveNeutral, aveSadness, aveSurprise));
