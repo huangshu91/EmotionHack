@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace WPFMediaPlayer
 {
-    using Visualization;
+    //using Visualization;
     using RuntimeVisualization;
 
     /// <summary>

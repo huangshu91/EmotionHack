@@ -14,7 +14,6 @@
         public EmotionGraph()
         {
             this.MyModel = new PlotModel { Title = "Example 1" };
-            //this.MyModel.PlotAreaBackground = BackgroundBaseColor.ToOxyColor();
             this.MyModel.Background = OxyColors.White;
 
             Line = new LineSeries
@@ -43,7 +42,8 @@
             //MyModel.Series.Clear();
             Line.Points.Add(new DataPoint(testx++, testy));
             testy *= -1;
-            if (testx >= _displaySpan) {
+            if (testx >= _displaySpan)
+            {
                 Line.Points.RemoveAt(0);
             }
             MyModel.InvalidatePlot(true);
@@ -54,6 +54,10 @@
             //display the score in some way            
             Line.Points.Add(new DataPoint(testx++, testy));
             testy *= -1;
+            if (testx >= _displaySpan)
+            {
+                Line.Points.RemoveAt(0);
+            }
 
             MyModel.InvalidatePlot(true);
         }
