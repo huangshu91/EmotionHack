@@ -149,6 +149,10 @@ namespace DataStore
                     }
                     scoreExe.Add(score);
                 }
+                if (scoreExe.Count != 0)
+                {
+                    results.Add(scoreExe);
+                }
             }
 
             return results;

@@ -52,6 +52,11 @@ namespace Emotional.Core
             }
         }
 
+        public async Task<List<List<EmotionScore>>> GetHistory()
+        {
+            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory());
+        }
+
         public async Task<EmotionScore> GetEmotion(Stream stream, double time)
         {
             DateTime start = DateTime.UtcNow;

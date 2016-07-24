@@ -75,6 +75,11 @@ namespace CamEmoOrc
             }
             _Camera.cam_Stop();
         }
+        
+        public List<List<EmotionScore>> getHistory()
+        {
+            return _EmoClient.GetHistory().Result;
+        }
 
         public void FinishExecution()
         {
