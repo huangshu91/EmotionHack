@@ -125,18 +125,28 @@ namespace DataStore
             throw new NotImplementedException();
         }
 
-        public async Task<List<EmotionScore>> GetFullScoreHistory()
+        public async Task<List<List<EmotionScore>>> GetFullScoreHistory()
         {
-            string query = @"SELECT * FROM [emo].[EmotionScore];";
+            string query = @"SELECT * FROM [emo].[EmotionScore] ORDER BY [ExecutionId], [TimeStamp];";
 
-            List<EmotionScore> results = new List<EmotionScore>();
-
+            List<List<EmotionScore>> results = new List<List<EmotionScore>>();
+            List<EmotionScore> scoreExe = null;
             using (var reader = await this.ExecuteReaderAsync(query, false))
             {
+                int prevExe = 0;
                 while (reader.Read())
                 {
                     EmotionScore score = new EmotionScore(reader);
-                    results.Add(score);
+                    if (score.executionId != prevExe)
+                    {
+                        if (prevExe != 0)
+                        {
+                            results.Add(scoreExe);
+                        }
+
+                        scoreExe = new List<EmotionScore>();
+                    }
+                    scoreExe.Add(score);
                 }
             }
 

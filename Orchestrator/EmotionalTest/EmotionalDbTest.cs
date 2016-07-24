@@ -26,7 +26,7 @@ namespace EmotionalTest
         public async Task GetScoreHistory()
         {
             IDataLayer dbAccess = new SQLDataLayer(_connection);
-            var result = await dbAccess.WithDataLayerAsync<List<EmotionScore>>(async db => await db.GetFullScoreHistory());
+            var result = await dbAccess.WithDataLayerAsync(async db => await db.GetFullScoreHistory());
 
             Assert.AreNotEqual(result.Count, 0);
         }
