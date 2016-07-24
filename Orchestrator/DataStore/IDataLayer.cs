@@ -20,7 +20,7 @@ namespace DataStore
 
         Task<List<EmotionScore>> GetScoresFilteredBy(int something);
 
-        Task<List<EmotionScore>> GetFullScoreHistory();
+        Task<List<List<EmotionScore>>> GetFullScoreHistory();
 
         Task<List<EmotionScore>> GetScoresByExecutionId(int executionId);
 

@@ -71,22 +71,21 @@ namespace Visualization
             combinedChart.Series["Fear"].Color = Color.RosyBrown;
         }
 
-        public async Task<List<EmotionScore>> GetScores()
+        public async Task<List<List<EmotionScore>>> GetScores()
         {
             using (var dbAccess = new SQLDataLayer())
             {
-                return await dbAccess.WithDataLayerAsync<List<EmotionScore>>
-                    (async db => await db.GetFullScoreHistory());
+                return await dbAccess.WithDataLayerAsync(async db => await db.GetFullScoreHistory());
             }
         }
 
-        public async Task ShowGraphs(/*Scores[,] emoScoresList*/)
+        public async Task ShowGraphs(Scores[,] emoScoresList)
         {
             Scores[,] emoScoresAll = emoScoresList;
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,
                 aveHappiness = 0, aveNeutral = 0, aveSadness = 0, aveSurprise = 0;
 
-            List<EmotionScore> scores = GetScores().Result;
+            List<List<EmotionScore>> scores = GetScores().Result;
             
 
 
