@@ -52,31 +52,33 @@ namespace Emotional.Core
             }
         }
 
-        public async Task<EmotionScore> GetEmotion(Stream stream, DateTime time)
+        public async Task<EmotionScore> GetEmotion(Stream stream, double time)
         {
             DateTime start = DateTime.UtcNow;
             var scores = await client.GetEmotion(stream);
             scores.startTime = start;
             scores.endTime = DateTime.UtcNow;
             scores.executionId = ExecutionId;
+            scores.timeStamp = time;
 
             history.Add(time, scores);
             return scores;
         }
 
-        public async Task<EmotionScore> GetEmotion(MemoryStream stream, DateTime time)
+        public async Task<EmotionScore> GetEmotion(MemoryStream stream, double time)
         {
             DateTime start = DateTime.UtcNow;
             var scores = await client.GetEmotion(stream);
             scores.startTime = start;
             scores.endTime = DateTime.UtcNow;
             scores.executionId = ExecutionId;
+            scores.timeStamp = time;
 
             history.Add(time, scores);
             return scores;
         }
 
-        public Task<EmotionScore> GetDummyEmotion(DateTime time, MemoryStream stream = null)
+        public Task<EmotionScore> GetDummyEmotion(double time, MemoryStream stream = null)
         {
             double defVal = 0.5;
             Scores score = new Scores()

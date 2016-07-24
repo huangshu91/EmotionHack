@@ -23,6 +23,8 @@ namespace CamEmoOrc
         private Task _OrcInstance;
         private MainWindow _runtimeVisual;
 
+        private double sampleTime = 0;
+
         public BasicOrchestrator(double samplingRate)
         {
             _sampleRate = TimeSpan.FromSeconds(samplingRate);
@@ -34,6 +36,7 @@ namespace CamEmoOrc
         public async Task<int> Start(VideoExecution videoExecution, MainWindow realTimeVisualizer)
         {
             _runtimeVisual = realTimeVisualizer;
+            sampleTime = 0;
             return await Task.Factory.StartNew<int>(() => StartExecution(videoExecution));
         }
 
@@ -59,14 +62,15 @@ namespace CamEmoOrc
             while (_togglePlay)
             {
                 MemoryStream pic = _Camera.cam_TakePic();
+                sampleTime += (double) _sampleRate.Milliseconds;
 
                 if (pic != null && pic.Length > 0)
                 {
-                    //EmotionScore emoScore = _EmoClient.GetEmotion(pic, DateTime.Now).Result;
-                    var score = _EmoClient.GetDummyEmotion(DateTime.Now, null).Result;
+                    EmotionScore score = _EmoClient.GetEmotion(pic, sampleTime).Result;
+                    //var score = _EmoClient.GetDummyEmotion(sampleTime, null).Result;
                     _runtimeVisual.UpdateData(score);
                 }
-                /// DO SOMETHING WITH THE SCORE!!!
+
                 Thread.Sleep(_sampleRate);
             }
             _Camera.cam_Stop();

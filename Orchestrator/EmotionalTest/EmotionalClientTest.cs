@@ -18,7 +18,7 @@ namespace EmotionalTest
             FileStream file = new FileStream(TestInput, FileMode.Open);
 
             EmotionClient emoClient = new EmotionClient();
-            var result = await emoClient.GetEmotion(file, DateTime.UtcNow);
+            var result = await emoClient.GetEmotion(file, 0);
 
             Assert.IsNotNull(result.scores); 
         }

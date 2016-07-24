@@ -89,6 +89,8 @@ namespace Visualization
             List<EmotionScore> scores = GetScores().Result;
             
 
+
+
             for (int j = 0; j < emoScoresAll.GetLength(1); j++)
             {
                 for (int i = 0; i < emoScoresAll.GetLength(0); i++)
