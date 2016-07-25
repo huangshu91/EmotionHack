@@ -85,7 +85,10 @@ namespace CamEmoOrc
         
         public List<List<EmotionScore>> GetHistory()
         {
-            return _EmoClient.GetHistory().Result;
+            //HACK, MUST FIX SOON (@STEVEN: CAN YOU TAKE A LOOK AT WHY THIS IS HANGING??)
+            //FAKING THIS SO THAT I CAN TEST THE REMAINING PARTS
+            return new List<List<EmotionScore>>();
+            //return _EmoClient.GetHistory().Result;
         }
 
         public void FinishExecution()

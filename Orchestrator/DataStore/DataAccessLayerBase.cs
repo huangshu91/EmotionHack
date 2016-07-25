@@ -265,6 +265,7 @@ namespace DataStore
         public async Task<SqlDataReader> ExecuteReaderAsync(string queryString, bool isSproc, params object[] parameters)
         {
             PrepareCommand(queryString, isSproc, parameters);
+            //The problem seem to be here, this call isn't returning on my PC atleast. (@STEVEN: CAN YOU TAKE A LOOK AT THIS?)
             var result = await _Command.ExecuteReaderAsync();
             return result;
         }
