@@ -43,6 +43,10 @@ namespace Emotional.Core
         /// <returns></returns>
         Task<EmotionScore> GetDummyEmotion(double time, MemoryStream stream = null);
 
+        /// <summary>
+        /// Gets the complete emtional scores history for the same video being analyzed
+        /// </summary>
+        /// <returns></returns>
         Task<List<List<EmotionScore>>> GetHistory();
     }
 }

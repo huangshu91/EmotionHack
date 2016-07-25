@@ -70,6 +70,9 @@ namespace CamEmoOrc
                     EmotionScore score = _EmoClient.GetEmotion(pic, sampleTime).Result;
                     //var score = _EmoClient.GetDummyEmotion(sampleTime, null).Result;
 
+                    //Update scores to 0 value in case it is null. Doing this so that execution doesn't break
+                    score.scores = score.scores ?? new Scores();
+
                     //use EmotionScore data to draw RuntimeVisualization
                     _runtimeVisual.UpdateData(score);
 
@@ -80,20 +83,15 @@ namespace CamEmoOrc
             _Camera.cam_Stop();
         }
         
-        public List<List<EmotionScore>> getHistory()
+        public List<List<EmotionScore>> GetHistory()
         {
             return _EmoClient.GetHistory().Result;
         }
 
         public void FinishExecution()
         {
+            _togglePlay = false;
             Task.Factory.StartNew(() => { _EmoClient.FinishExecution(); });
-        }
-
-        public async Task<OrderedDictionary> Stop()
-        {
-            return await new Task<OrderedDictionary>(() => { return new OrderedDictionary(); });
-
         }
     }
 }

@@ -29,11 +29,9 @@ namespace CamEmoOrc
         void FinishExecution();
 
         /// <summary>
-        /// Stops the Orchestration
+        /// Gets the complete history of the video under exection
         /// </summary>
-        /// <returns>The entire set of scores for the current execution</returns>
-        Task<OrderedDictionary> Stop();
-
-        List<List<EmotionScore>> getHistory();
+        /// <returns></returns>
+        List<List<EmotionScore>> GetHistory();
     }
 }

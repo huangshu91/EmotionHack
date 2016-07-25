@@ -36,8 +36,6 @@ namespace WPFMediaPlayer
             _Orchestrator = new BasicOrchestrator(Settings.Default.SamplingRate);
         }
 
-
-
         #region media player options
 
         private void mediaElement_KeyDown(object sender, KeyEventArgs e)
@@ -61,20 +59,17 @@ namespace WPFMediaPlayer
                     WindowState = WindowState.Normal;
                     WindowStyle = WindowStyle.SingleBorderWindow;
                     break;
-                case Key.T:
-                    Testing();
-                    break;
                 case Key.L:
-                    Show();
+                    ShowFinalScoresForm();
                     break;
             }
         }
 
-        private void Show()
+        private void ShowFinalScoresForm()
         {
             //TODO vivek: Hook up Orchestrator with final visualization(Form)
             //We will want to figure out a way to display a Form from here. Code commented out is how the call would work in Program.cs in visualization 
-            var result = _Orchestrator.getHistory();
+            var result = _Orchestrator.GetHistory();
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Form1 graph = new Form1(result.Count);
@@ -82,15 +77,9 @@ namespace WPFMediaPlayer
             //graph.ShowGraphs(result);
         }
 
-        private void Testing()
-        {
-            _Orchestrator.FinishExecution();
-        }
-
         private void Stop()
         {
-            mediaElement.Stop();
-            _playState = false;
+            FinishExecution();
         }
 
         private void PlayPause()
@@ -130,11 +119,20 @@ namespace WPFMediaPlayer
 
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
+            FinishExecution();
+        }
+
+        private void FinishExecution()
+        {
+            //Add check if already stopped, if needed
+            mediaElement.Stop();
+
             if (_startExecution)
             {
                 _startExecution = false;
-                _Orchestrator.Stop();
+                _Orchestrator.FinishExecution();
             }
+            _playState = false;
         }
     }
 }

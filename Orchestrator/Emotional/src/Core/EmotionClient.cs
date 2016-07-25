@@ -42,8 +42,6 @@ namespace Emotional.Core
 
         public async Task FinishExecution()
         {
-            //var result = await DbLayer.FinishExecution(history, ExecutionId);
-
             var result = await DbLayer.WithDataLayerAsync<bool>(async db => await db.FinishExecution(history, ExecutionId));
 
             if (!result)
