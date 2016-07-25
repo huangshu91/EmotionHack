@@ -16,7 +16,7 @@
         {
             this.MyModel = new PlotModel { Title = "Example 1" };
             this.MyModel.Background = OxyColors.White;
-            this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = -1, Maximum = 1});
+            this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = -1.5, Maximum = 1.5});
             //this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom});
 
             Line = new LineSeries
