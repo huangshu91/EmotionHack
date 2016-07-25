@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebCam;
+using RuntimeVisualization;
 
 namespace CamEmoOrc
 {
@@ -68,7 +69,10 @@ namespace CamEmoOrc
                 {
                     EmotionScore score = _EmoClient.GetEmotion(pic, sampleTime).Result;
                     //var score = _EmoClient.GetDummyEmotion(sampleTime, null).Result;
+
+                    //use EmotionScore data to draw RuntimeVisualization
                     _runtimeVisual.UpdateData(score);
+
                 }
 
                 Thread.Sleep(_sampleRate);
