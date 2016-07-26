@@ -16,6 +16,7 @@ namespace WPFMediaPlayer
         private bool _playState, _startExecution, _videoLoaded;
         private IOrchestrator _Orchestrator;
         private RuntimeVisualization.MainWindow _Runtime;
+        private VideoExecution _videoExecutionInstance;
 
         public MainWindow()
         {
@@ -72,20 +73,9 @@ namespace WPFMediaPlayer
             {
                 _startExecution = true;
 
-                string fullPath = mediaElement.Source.ToString();
-                int pos = fullPath.LastIndexOf("/") + 1;
-                string filename = fullPath.Substring(pos, fullPath.Length - pos);
-
-                VideoExecution vidEx = new VideoExecution()
-                {
-                    fileName = fullPath,
-                    height = (int) mediaElement.ActualHeight,
-                    width = (int) mediaElement.ActualWidth
-                };
-
                 _Runtime.Show();
 
-                _Orchestrator.Start(vidEx, _Runtime);
+                _Orchestrator.Start(_videoExecutionInstance, _Runtime);
             }
 
             if (_videoLoaded)
@@ -105,6 +95,23 @@ namespace WPFMediaPlayer
             ofd.ShowDialog();
             mediaElement.Source = new Uri(ofd.FileName);
             _videoLoaded = true;
+
+            #region setup video execution instance
+
+            string fullPath = mediaElement.Source.ToString();
+            int pos = fullPath.LastIndexOf("/") + 1;
+            string filename = fullPath.Substring(pos, fullPath.Length - pos);
+
+            _videoExecutionInstance = new VideoExecution()
+            {
+                FileName = filename,
+                FullPath = fullPath,
+                Height = (int)mediaElement.ActualHeight,
+                Width = (int)mediaElement.ActualWidth,
+                VideoLength = mediaElement.NaturalDuration.TimeSpan
+            };
+
+            #endregion
         }
 
         #endregion

@@ -11,10 +11,14 @@ namespace Emotional.Models
     /// </summary>
     public class VideoExecution
     {
-        public int width { get; set; }
+        public int Width { get; set; }
 
-        public int height { get; set; }
+        public int Height { get; set; }
 
-        public string fileName { get; set; }
+        public string FileName { get; set; }
+
+        public string FullPath { get; set; }
+
+        public TimeSpan VideoLength { get; set; }
     }
 }

@@ -41,9 +41,9 @@ namespace EmotionalTest
 
             VideoExecution ve = new VideoExecution()
             {
-                height = vHeight,
-                width = vWidth,
-                fileName = vName
+                Height = vHeight,
+                Width = vWidth,
+                FileName = vName
             };
 
             int executionId = await dbAccess.WithDataLayerAsync<int>(async db => await db.GetExecutionContext(ve));

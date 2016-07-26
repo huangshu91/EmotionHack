@@ -57,9 +57,9 @@ namespace DataStore
                                SELECT CONVERT(int, SCOPE_IDENTITY());";
 
             var result = await ExecuteScalarAsync<int>(query, false, 
-                "@FileName", video.fileName, 
-                "@Width", video.width, 
-                "@Height", video.height);
+                "@FileName", video.FileName, 
+                "@Width", video.Width, 
+                "@Height", video.Height);
 
             return result;
         }
