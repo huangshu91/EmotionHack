@@ -1,6 +1,6 @@
 Video player and Orchestration (Vivek)
-	Hook up with final visualization summary/user final visualization
-	How do things plan out on the screen: layout
+	- Hook up with final visualization summary/user final visualization
+	- How do things plan out on the screen: layout
 
 Runtime Visualization
 	Make it pretty (Steven)
@@ -27,3 +27,35 @@ PM Work (Summer)
 	PPT Presentation
 	Video making (With part of the group’s help)
 
+
+0726 sync (Steven, Vivek, Summer and Sundeep)
+
+Current Progress:
+Video player and Orchestration (Vivek)
+	
+Runtime Visualization
+	Stretch goal: make it prettier
+User Final Visualization
+	TODO: scroll bar(Vivek)
+	TODO: show line graph (Steven)
+	
+Final visualization Summary (Summer)
+	Summary for all emotions with tabs(Summer)
+	StackedArea graph for visualization
+	Adding scroll bar to all tabs
+
+WebCam
+	Show window is ready
+	Save timestamp + picture stream for the current execution is ready
+
+SQL
+	TODO: Pass the sql data for current video instead of the whole thing 
+	
+Kibana 
+	pulled the data from sql and show (Sundeep)
+	
+PM Work (Summer)
+	Product spec
+	PPT Presentation
+	Video making (With part of the group’s help)
+	
