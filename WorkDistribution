@@ -3,15 +3,15 @@ Video player and Orchestration (Vivek)
 	- How do things plan out on the screen: layout
 
 Runtime Visualization
-	Make it pretty (Steven)
+	(DONE) Make it pretty (Steven)
 
 User Final Visualization
 	Point in time and the score at that time
 	Static Graph (Steven)
 	Scroll bar (Steven, Reva and Vivek)
-	Heap map or pie chart  (Steven)
+	(DONE) Heap map or pie chart  (Steven)
 	Add video frames at point (Vivek)
-	webcam frames at point (Yang)
+	webcam frames at point (Steven)
 
 Final visualization Summary (Summer)
 	Summary for all emotions with tabs(Summer)
@@ -19,8 +19,8 @@ Final visualization Summary (Summer)
 	Stretch goal: Scroll bar with video and pie chart showing (Summer)
 
 WebCam (Yang)
-	Show window 
-	Save timestamp + picture stream for the current execution
+	(DONE) webcam display (Steven)
+	(DONE) Save timestamp + picture stream for the current execution
 
 PM Work (Summer)
 	Product spec
@@ -31,10 +31,10 @@ PM Work (Summer)
 0726 sync (Steven, Vivek, Summer and Sundeep)
 
 Current Progress:
-Video player and Orchestration (Vivek)
+	Video player and Orchestration (Vivek)
 	
 Runtime Visualization
-	Stretch goal: make it prettier
+	(DONE?) Stretch goal: make it prettier (STEVEN)
 User Final Visualization
 	TODO: scroll bar(Vivek)
 	TODO: show line graph (Steven)
@@ -45,11 +45,11 @@ Final visualization Summary (Summer)
 	Adding scroll bar to all tabs
 
 WebCam
-	Show window is ready
-	Save timestamp + picture stream for the current execution is ready
+	(DONE) Show window is ready
+	(DONE) Save timestamp + picture stream for the current execution is ready
 
 SQL
-	TODO: Pass the sql data for current video instead of the whole thing 
+	(DONE) Pass the sql data for current video instead of the whole thing 
 	
 Kibana 
 	pulled the data from sql and show (Sundeep)
