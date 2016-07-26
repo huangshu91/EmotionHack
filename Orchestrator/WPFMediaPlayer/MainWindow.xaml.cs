@@ -134,7 +134,7 @@ namespace WPFMediaPlayer
             }
             _playState = false;
             _videoLoaded = false;
-            _Runtime.Hide();
+            _Runtime.Finish();
 
             mediaElement.Source = null;
         }

@@ -34,5 +34,11 @@
             Model.UpdateScore(emo);
             secondary.UpdateWebCamView(cam);
         }
+
+        public void Finish()
+        {
+            this.Hide();
+            secondary.Hide();
+        }
     }
 }
