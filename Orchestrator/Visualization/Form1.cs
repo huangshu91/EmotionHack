@@ -27,6 +27,10 @@ namespace Visualization
         {
             m_maxPointCount = pointCount;
             InitializeComponent();
+            combinedChart.BackColor = System.Drawing.Color.Black;
+            combinedChart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            combinedChart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+
             //initializeChart(combinedChart, "Aggregated Emotion", Color.Blue);
             initializeChart(angerChart, "Anger", Color.Red);
             initializeChart(happinessChart, "Happiness", Color.Green);
@@ -186,7 +190,10 @@ namespace Visualization
 
         private void initializeChart(Chart chart, String seriesName, Color color)
         {
+            chart.BackColor = System.Drawing.Color.Black;
             chart.Series.Clear();
+            chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
             chart.ChartAreas[0].AxisX.Minimum = 1;
             chart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
