@@ -84,7 +84,12 @@ namespace WPFMediaPlayer
                 else mediaElement.Pause();
                 _playState = !_playState;
                 //Setting the video execution duration here, since it's only available after the video is playing
-                _videoExecutionInstance.VideoLength = mediaElement.NaturalDuration.TimeSpan;
+                if (_playState)
+                {
+                    //HACK to wait until the timespan is actually available
+                    while (!mediaElement.NaturalDuration.HasTimeSpan) ;
+                    _videoExecutionInstance.VideoLength = mediaElement.NaturalDuration.TimeSpan;
+                }
             }
         }
 
