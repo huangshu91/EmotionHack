@@ -62,7 +62,7 @@ namespace WPFMediaPlayer
         {
             _Orchestrator.ShowPostPlaybackVisualizations(_videoExecutionInstance);
 
-            SliderWindow _slider = new SliderWindow();
+            SliderWindow _slider = new SliderWindow(_Orchestrator.GetExecutionScores());
             _slider.LoadVideoExecution(_videoExecutionInstance);
             _slider.Show();
         }

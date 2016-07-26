@@ -33,5 +33,7 @@ namespace CamEmoOrc
         /// </summary>
         /// <returns></returns>
         void ShowPostPlaybackVisualizations(VideoExecution videoExection);
+
+        OrderedDictionary GetExecutionScores();
     }
 }

@@ -37,6 +37,11 @@ namespace Emotional.Core
             camHistory =    new OrderedDictionary();
         }
 
+        public OrderedDictionary GetExecutionScores()
+        {
+            return history;
+        }
+
         public async Task<int> BeginExecution(VideoExecution vid)
         {
             //ExecutionId = await DbLayer.GetExecutionContext(vid);

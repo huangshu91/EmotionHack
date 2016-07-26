@@ -3,13 +3,14 @@
     using Emotional.Models;
     using System;
     using System.Windows;
+    using System.Collections.Specialized;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class SliderWindow : Window
     {
-        private PieViewModel Model;
+        private GroupedModel Model;
         private TimeSpan videoExecutionDuration;
         private const double SamplingRate = 1;
 
@@ -17,7 +18,14 @@
         {
             InitializeComponent();
 
-            Model = (PieViewModel)this.DataContext;
+            Model = (GroupedModel)this.DataContext;
+        }
+
+        public SliderWindow(OrderedDictionary history)
+        {
+            InitializeComponent();
+
+            Model = (GroupedModel)this.DataContext;
         }
 
         public void LoadVideoExecution(VideoExecution videoExecutionInstance)

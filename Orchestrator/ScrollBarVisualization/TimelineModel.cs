@@ -6,5 +6,12 @@
 
     class TimelineModel
     {
+        public PlotModel MyModel { get; set; }
+
+        public TimelineModel()
+        {
+
+        }
     }
+
 }

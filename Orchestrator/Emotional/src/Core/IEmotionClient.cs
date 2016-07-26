@@ -48,5 +48,7 @@ namespace Emotional.Core
         /// </summary>
         /// <returns></returns>
         Task<List<List<EmotionScore>>> GetHistory();
+
+        OrderedDictionary GetExecutionScores();
     }
 }

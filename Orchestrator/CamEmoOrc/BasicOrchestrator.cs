@@ -88,6 +88,11 @@ namespace CamEmoOrc
             Task.Factory.StartNew(() => { ShowFinalvisualizationTask(); });
         }
 
+        public OrderedDictionary GetExecutionScores()
+        {
+            return _EmoClient.GetExecutionScores();
+        }
+
         private void ShowFinalvisualizationTask()
         {
             var result = _EmoClient.GetHistory().Result;
