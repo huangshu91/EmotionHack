@@ -23,11 +23,15 @@ namespace Visualization
         private int m_maxPointCount;
         //An arrayList of array of Scores that contains all emotion data for a certain file
 
-        public Form1(int maxPointNumber)
+        public Form1(int pointCount)
         {
+            m_maxPointCount = pointCount;
             InitializeComponent();
-            m_maxPointCount = maxPointNumber;
-            initializeChart(combinedChart, "Aggregated Emotion", Color.Blue);
+            combinedChart.BackColor = System.Drawing.Color.Black;
+            combinedChart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            combinedChart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+
+            //initializeChart(combinedChart, "Aggregated Emotion", Color.Blue);
             initializeChart(angerChart, "Anger", Color.Red);
             initializeChart(happinessChart, "Happiness", Color.Green);
             initializeChart(surpriseChart, "Surprise", Color.Orange);
@@ -37,37 +41,64 @@ namespace Visualization
             initializeChart(disgustChart, "Disgust", Color.Yellow);
             initializeChart(fearChart, "Fear", Color.RosyBrown);
 
+            combinedChart.Series.Clear();
+
+            combinedChart.ChartAreas[0].AxisX.Minimum = 1;
+            combinedChart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
+
+            var chartArea = combinedChart.ChartAreas[0];
+
+            // set view range to [0,max]
+            chartArea.AxisX.Minimum = 0;
+            chartArea.AxisX.Maximum = m_maxPointCount;
+
+            // enable autoscroll
+            chartArea.CursorX.AutoScroll = true;
+
+            // let's zoom to [0,blockSize] 
+            int blockSize = 20;
+            chartArea.AxisX.ScaleView.Zoomable = true;
+            chartArea.AxisX.ScaleView.SizeType = DateTimeIntervalType.Number;
+            int position = 0;
+            chartArea.AxisX.ScaleView.Zoom(position, blockSize);
+
+            // disable zoom-reset button (only scrollbar's arrows are available)
+            chartArea.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
+
+            // set scrollbar small change to blockSize 
+            chartArea.AxisX.ScaleView.SmallScrollSize = blockSize;
+
             Series anger = combinedChart.Series.Add("Anger");
             combinedChart.Series["Anger"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Anger"].Color = Color.Red;
             Series happiness = combinedChart.Series.Add("Happiness");
             combinedChart.Series["Happiness"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Happiness"].Color = Color.Green;
             Series surprise = combinedChart.Series.Add("Surprise");
             combinedChart.Series["Surprise"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Surprise"].Color = Color.Orange;
             Series sadness = combinedChart.Series.Add("Sadness");
             combinedChart.Series["Sadness"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Sadness"].Color = Color.DimGray;
             Series contempt = combinedChart.Series.Add("Contempt");
             combinedChart.Series["Contempt"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Contempt"].Color = Color.MediumPurple;
             Series neutral = combinedChart.Series.Add("Neutral");
             combinedChart.Series["Neutral"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Neutral"].Color = Color.Brown;
             Series disgust = combinedChart.Series.Add("Disgust");
             combinedChart.Series["Disgust"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Disgust"].Color = Color.Yellow;
             Series fear = combinedChart.Series.Add("Fear");
             combinedChart.Series["Fear"].ChartType =
-                    SeriesChartType.FastLine;
+                    SeriesChartType.StackedArea;
             combinedChart.Series["Fear"].Color = Color.RosyBrown;
         }
 
@@ -83,9 +114,17 @@ namespace Visualization
         {
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,
                 aveHappiness = 0, aveNeutral = 0, aveSadness = 0, aveSurprise = 0;
-
             foreach (List<EmotionScore> scorePerTime in scores)
             {
+
+                aveAnger = 0;
+                aveContempt = 0;
+                aveDisgust = 0;
+                aveFear = 0;
+                aveHappiness = 0;
+                aveNeutral = 0;
+                aveSadness = 0;
+                aveSurprise = 0;
                 foreach (EmotionScore userEScore in scorePerTime)
                 {
                     Scores userScore = userEScore.scores;
@@ -106,9 +145,6 @@ namespace Visualization
                 aveNeutral /= scorePerTime.Count;
                 aveSadness /= scorePerTime.Count;
                 aveSurprise /= scorePerTime.Count;
-                combinedChart.Series["Aggregated Emotion"].Points.AddY
-                    (aggregateEmotionPoint(aveAnger, aveContempt, aveDisgust,
-                    aveFear, aveHappiness, aveNeutral, aveSadness, aveSurprise));
                 combinedChart.Series["Anger"].Points.AddY(aveAnger);
                 combinedChart.Series["Happiness"].Points.AddY(aveHappiness);
                 combinedChart.Series["Surprise"].Points.AddY(aveSurprise);
@@ -154,12 +190,11 @@ namespace Visualization
 
         private void initializeChart(Chart chart, String seriesName, Color color)
         {
+            chart.BackColor = System.Drawing.Color.Black;
             chart.Series.Clear();
+            chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
-            //Setting the boundaries for the x axis so it never autoresizes.
-            //TODO: will change the -4 and 4 according to emotion API's return values.
-            chart.ChartAreas[0].AxisY.Minimum = -4;
-            chart.ChartAreas[0].AxisY.Maximum = 4;
             chart.ChartAreas[0].AxisX.Minimum = 1;
             chart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
 
@@ -167,6 +202,28 @@ namespace Visualization
             chart.Series[seriesName].ChartType =
                     SeriesChartType.FastLine;
             chart.Series[seriesName].Color = color;
+
+            var chartArea = chart.ChartAreas[series.ChartArea];
+
+            // set view range to [0,max]
+            chartArea.AxisX.Minimum = 0;
+            chartArea.AxisX.Maximum = m_maxPointCount;
+
+            // enable autoscroll
+            chartArea.CursorX.AutoScroll = true;
+
+            // let's zoom to [0,blockSize] 
+            int blockSize = 20;
+            chartArea.AxisX.ScaleView.Zoomable = true;
+            chartArea.AxisX.ScaleView.SizeType = DateTimeIntervalType.Number;
+            int position = 0;
+            chartArea.AxisX.ScaleView.Zoom(position, blockSize);
+
+            // disable zoom-reset button (only scrollbar's arrows are available)
+            chartArea.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.SmallScroll;
+
+            // set scrollbar small change to blockSize 
+            chartArea.AxisX.ScaleView.SmallScrollSize = blockSize;
         }
 
         private void Aggregated_SelectedIndexChanged(object sender, EventArgs e)
