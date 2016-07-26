@@ -1,0 +1,27 @@
+Video player and Orchestration (Vivek)
+	Hook up with final visualization summary/user final visualization
+	How do things plan out on the screen: layout
+
+Runtime Visualization
+	Different line for positive + negative scores
+	Make it pretty (Steven)
+
+User Final Visualization
+	Point in time and the score at that time
+		Static Graph (Steven)
+		Scroll bar (Steven and Reva)
+		Heap map or pie chart (Summer)
+		Add video frames at point (Vivek)
+		webcam frames at point (Yang)
+
+Summary Final Visualization
+	Kibana (Sundeep)
+
+WebCam (Yang)
+	Show window 
+	Save timestamp + picture stream for the current execution
+
+PM Work (Summer)
+	Making ppt presentation
+	Getting people to like the project
+	Video making
