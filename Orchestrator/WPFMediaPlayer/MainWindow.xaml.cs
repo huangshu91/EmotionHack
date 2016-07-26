@@ -2,40 +2,29 @@
 using Emotional.Models;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPFMediaPlayer
 {
-    //using Visualization;
-    using RuntimeVisualization;
-    using System.Windows.Interop;
-    using Visualization;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool _playState, _startExecution;
+        private bool _playState, _startExecution, _videoLoaded;
         private IOrchestrator _Orchestrator;
+        private RuntimeVisualization.MainWindow _Runtime;
+
         public MainWindow()
         {
             _playState = false;
             _startExecution = false;
+            _videoLoaded = false;
             InitializeComponent();
             _Orchestrator = new BasicOrchestrator(Settings.Default.SamplingRate);
+            _Runtime = new RuntimeVisualization.MainWindow();
         }
 
         #region media player options
@@ -79,7 +68,7 @@ namespace WPFMediaPlayer
 
         private void PlayPause()
         {
-            if (!_startExecution)
+            if (!_startExecution && _videoLoaded)
             {
                 _startExecution = true;
                 VideoExecution vidEx = new VideoExecution()
@@ -89,15 +78,17 @@ namespace WPFMediaPlayer
                     width = (int) mediaElement.ActualWidth
                 };
 
-                var runtime = new RuntimeVisualization.MainWindow();
-                runtime.Show();
+                _Runtime.Show();
 
-                _Orchestrator.Start(vidEx, runtime);
+                _Orchestrator.Start(vidEx, _Runtime);
             }
 
-            if (!_playState) mediaElement.Play();
-            else mediaElement.Pause();
-            _playState = !_playState;
+            if (_videoLoaded)
+            {
+                if (!_playState) mediaElement.Play();
+                else mediaElement.Pause();
+                _playState = !_playState;
+            }
         }
 
         private void OpenFile()
@@ -108,6 +99,7 @@ namespace WPFMediaPlayer
             ofd.Filter = "Media (*.*)|*.*";
             ofd.ShowDialog();
             mediaElement.Source = new Uri(ofd.FileName);
+            _videoLoaded = true;
         }
 
         #endregion
@@ -128,6 +120,10 @@ namespace WPFMediaPlayer
                 _Orchestrator.FinishExecution();
             }
             _playState = false;
+            _videoLoaded = false;
+            _Runtime.Hide();
+
+            mediaElement.Source = null;
         }
     }
 }
