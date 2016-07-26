@@ -102,14 +102,6 @@ namespace Visualization
             combinedChart.Series["Fear"].Color = Color.RosyBrown;
         }
 
-        public async Task<List<List<EmotionScore>>> GetScores()
-        {
-            using (var dbAccess = new SQLDataLayer())
-            {
-                return await dbAccess.WithDataLayerAsync(async db => await db.GetFullScoreHistory());
-            }
-        }
-
         public void ShowGraphs(List<List<EmotionScore>> scores)
         {
             double aveAnger = 0, aveContempt = 0, aveDisgust = 0, aveFear = 0,

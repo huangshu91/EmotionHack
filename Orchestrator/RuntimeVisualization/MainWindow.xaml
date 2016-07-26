@@ -1,4 +1,4 @@
-﻿<Window x:Class="RuntimeVisualization.MainWindow"
+﻿<Window x:Class="RuntimeVisualization.RuntimeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:RuntimeVisualization"

@@ -131,6 +131,10 @@
       <Project>{86754c6e-2b33-4aa3-9059-807a1975e028}</Project>
       <Name>RuntimeVisualization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ScrollBarVisualization\SliderPlaybackVisualization.csproj">
+      <Project>{6017653d-a9be-427c-8f11-6ea975d94c4b}</Project>
+      <Name>SliderPlaybackVisualization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Visualization\Visualization.csproj">
       <Project>{fc7a4db3-d35c-4045-a613-82217b2ec442}</Project>
       <Name>Visualization</Name>

@@ -1,4 +1,4 @@
-﻿namespace ScrollBarVisualization
+﻿namespace SliderPlaybackVisualization
 {
     class GroupedModel
     {

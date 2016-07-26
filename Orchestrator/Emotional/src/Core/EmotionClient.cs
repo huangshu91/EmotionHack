@@ -58,7 +58,7 @@ namespace Emotional.Core
 
         public async Task<List<List<EmotionScore>>> GetHistory()
         {
-            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory(vid));
+            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory(video));
         }
 
         public async Task<EmotionScore> GetEmotion(Stream stream, double time)

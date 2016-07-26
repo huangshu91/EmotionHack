@@ -1,4 +1,4 @@
-﻿namespace ScrollBarVisualization
+﻿namespace SliderPlaybackVisualization
 {
     using Emotional.Models;
     using OxyPlot;
