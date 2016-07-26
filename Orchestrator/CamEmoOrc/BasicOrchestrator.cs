@@ -73,7 +73,7 @@ namespace CamEmoOrc
                     score.scores = score.scores ?? new Scores();
 
                     //use EmotionScore data to draw RuntimeVisualization
-                    _runtimeVisual.UpdateData(score);
+                    _runtimeVisual.UpdateData(score, pic);
 
                 }
 
