@@ -26,6 +26,8 @@ namespace Emotional.Core
 
         private int ExecutionId { get; set; }
 
+        public VideoExecution video { get; set; }
+
         public EmotionClient()
         {
             client =        new EmoHttpClient();
@@ -39,8 +41,8 @@ namespace Emotional.Core
         {
             //ExecutionId = await DbLayer.GetExecutionContext(vid);
 
+            video = vid;
             ExecutionId = await DbLayer.WithDataLayerAsync<int>(async db => await db.GetExecutionContext(vid));
-            //return 0;
             return ExecutionId;
         }
 
@@ -56,7 +58,7 @@ namespace Emotional.Core
 
         public async Task<List<List<EmotionScore>>> GetHistory()
         {
-            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory());
+            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory(vid));
         }
 
         public async Task<EmotionScore> GetEmotion(Stream stream, double time)
