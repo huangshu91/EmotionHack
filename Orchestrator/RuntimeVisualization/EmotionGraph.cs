@@ -12,6 +12,16 @@
     public class EmotionGraph
     {
         private int _displaySpan = 10;
+
+
+        public int testx = 0;
+        public int testy = 1;
+        public LineSeries positive { get; set; }
+
+        public LineSeries negative { get; set; }
+
+        public PlotModel MyModel { get; private set; }
+
         public EmotionGraph()
         {
             this.MyModel = new PlotModel { Title = "LineGraph" };
@@ -131,13 +141,5 @@
             AggEmoScore = Math.Abs(positiveEmo_max) >= Math.Abs(negativeEmo_min) ? positiveEmo_max : negativeEmo_min;
             return AggEmoScore;
         }
-
-        public int testx = 0;
-        public int testy = 1;
-        public LineSeries positive { get; set; }
-
-        public LineSeries negative { get; set; }
-
-        public PlotModel MyModel { get; private set; }
     }
 }
