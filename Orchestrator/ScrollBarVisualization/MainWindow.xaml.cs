@@ -8,18 +8,18 @@
     /// </summary>
     public partial class MainWindow : Window
     {
-        private PieViewModel Model;
+        //private PieViewModel Model;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            Model = (PieViewModel)this.DataContext;
+            //Model = (PieViewModel)this.DataContext;
         }
 
         public void UpdateData(EmotionScore emo)
         {
-            //Model.UpdateScore(emo);
+            //Model.UpdateData(emo);
         }
     }
 }

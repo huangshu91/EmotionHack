@@ -4,15 +4,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:ScrollBarVisualization"
     
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="900">
     <Window.DataContext>
-        <local:PieViewModel/>
+        <local:GroupedModel/>
     </Window.DataContext>
-    <Grid>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Height="20" Margin="10,289,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.518,4.4"/>
+    <Grid Background="Black">
+        <Slider x:Name="slider" HorizontalAlignment="Left" Height="20" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="880" RenderTransformOrigin="0.518,4.4" Background="Black"/>
 
-        <!-- <oxy:HeatMapSeries HorizontalAlignment="Left" Height="274" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/> -->
-        <oxy:PlotView Model="{Binding MyModel}" Height="274" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/>
-        
+        <oxy:PlotView Model="{Binding PieViewModel.MyModel}" Height="274" Margin="0,0,398,0" VerticalAlignment="Top" Width="497" Background="Black"/>
+
+        <!--<oxy:PlotView Model="{Binding TimelineModel.MyModel}" Height="200" Margin="10,100,0,0" VerticalAlignment="Top"  Width="40" Background="Black"/>  -->      
     </Grid>
 </Window>
