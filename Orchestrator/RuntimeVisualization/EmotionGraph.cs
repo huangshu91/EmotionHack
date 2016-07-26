@@ -17,11 +17,27 @@
             this.MyModel = new PlotModel { Title = "LineGraph" };
             //this.PieModel = new PlotModel { Title = "PieGraph" };
 
-            this.MyModel.Background = OxyColors.White;
-            this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = -1.5, Maximum = 1.5});
-            //this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom});
-
-            Line = new LineSeries
+            this.MyModel.Background = OxyColors.Transparent;//.White;
+            this.MyModel.Axes.Add(new LinearAxis
+                {
+                    Position = AxisPosition.Left,
+                    Minimum = -1.5,
+                    Maximum = 1.5,
+                    TextColor = OxyColors.White,
+                    AxislineColor = OxyColors.White,
+                    TicklineColor = OxyColors.White,
+                }
+            );
+            this.MyModel.Axes.Add(new LinearAxis
+                {
+                    Position = AxisPosition.Bottom,
+                    TextColor = OxyColors.White,
+                    AxislineColor = OxyColors.White,
+                    TicklineColor = OxyColors.White,
+                }
+            );
+            
+            positive = new LineSeries
             {
                 StrokeThickness = 2,
                 CanTrackerInterpolatePoints = false,
@@ -29,29 +45,39 @@
                 Smooth = true
             };
 
-            this.MyModel.Series.Add(Line);
-            //this.MyModel.Axes.Clear();
-            //var t = this.MyModel.Axes.Count;
+            negative = new LineSeries
+            {
+                StrokeThickness = 2,
+                CanTrackerInterpolatePoints = false,
+                Title = "Value",
+                Smooth = true,
+                Color = OxyColors.Orchid
+            };
+
+            this.MyModel.Series.Add(negative);
+            this.MyModel.Series.Add(positive);
 
             this.MyModel.IsLegendVisible = false;
-            //this.MyModel.IsLegendVisible = true;
 
-            //Timer myTimer = new Timer();
-            //myTimer.Elapsed += new ElapsedEventHandler(UpdateModel);
-            //myTimer.Interval = 1000; // 1000 ms is one second
-            //myTimer.Start();
+            Timer myTimer = new Timer();
+            myTimer.Elapsed += new ElapsedEventHandler(UpdateModel);
+            myTimer.Interval = 1000; // 1000 ms is one second
+            myTimer.Start();
 
 
         }
 
         public void UpdateModel(object source, ElapsedEventArgs e)
         {
-            //MyModel.Series.Clear();
-            Line.Points.Add(new DataPoint(testx++, testy));
+            double score = testy;
+            positive.Points.Add(new DataPoint(testx, score));
+            negative.Points.Add(new DataPoint(testx++, -0.5 * score));
+
             testy *= -1;
             if (testx >= _displaySpan)
             {
-                Line.Points.RemoveAt(0);
+                positive.Points.RemoveAt(0);
+                negative.Points.RemoveAt(0);
             }
             
             this.MyModel.InvalidatePlot(true);
@@ -61,11 +87,15 @@
         {
             //display the score in some way            
             //Line.Points.Add(new DataPoint(testx++, emo.scores.happiness));
-            Line.Points.Add(new DataPoint(testx++, ProcessEmoScore(emo)));
+            double score = ProcessEmoScore(emo);
+
+            positive.Points.Add(new DataPoint(testx, score));
+            negative.Points.Add(new DataPoint(testx++, -0.5 * score));
 
             if (testx >= _displaySpan)
             {
-                Line.Points.RemoveAt(0);
+                positive.Points.RemoveAt(0);
+                negative.Points.RemoveAt(0);
             }
 
             MyModel.InvalidatePlot(true);
@@ -104,7 +134,10 @@
 
         public int testx = 0;
         public int testy = 1;
-        public LineSeries Line { get; set; }
+        public LineSeries positive { get; set; }
+
+        public LineSeries negative { get; set; }
+
         public PlotModel MyModel { get; private set; }
     }
 }
