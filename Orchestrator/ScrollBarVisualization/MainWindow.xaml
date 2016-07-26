@@ -4,19 +4,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:SliderPlaybackVisualization"
     
-        Title="MainWindow" Height="739.003" Width="525">
+        Title="MainWindow" Height="600" Width="900">
     <Window.DataContext>
         <local:GroupedModel/>
     </Window.DataContext>
-    <Grid>
-        <Slider x:Name="playbackSlider" HorizontalAlignment="Left" Height="34" Margin="10,664,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.518,4.4"
+    <Grid Background="Black">
+        <Slider x:Name="playbackSlider" HorizontalAlignment="Left" Height="34" Margin="10,0,0,0" VerticalAlignment="Bottom" Width="870" RenderTransformOrigin="0.518,4.4"
                 TickPlacement="BottomRight" ValueChanged="playbackSlider_ValueChanged" IsSnapToTickEnabled="True"/>
 
         <!-- <oxy:HeatMapSeries HorizontalAlignment="Left" Height="274" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/> -->
-        <oxy:PlotView Model="{Binding PieViewModel.MyModel}" Height="274" Margin="10,380,10,0" VerticalAlignment="Top" Width="497"/>
-        <Separator HorizontalAlignment="Left" Height="9" Margin="10,371,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.519,-3.648"/>
-        <MediaElement x:Name="playbackMediaElement" HorizontalAlignment="Left" Height="356" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"
+        <oxy:PlotView Model="{Binding PieViewModel.MyModel}" Height="300" Margin="10,10,10,0" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left" Background="Black"/>
+        
+        <MediaElement x:Name="playbackMediaElement" HorizontalAlignment="Right" Height="300" Margin="0,10,10,0" VerticalAlignment="Top" Width="500"
                       LoadedBehavior="Manual" />
 
+        <Separator HorizontalAlignment="Left" Height="9" Margin="10,0,0,40" VerticalAlignment="Bottom" Width="870" RenderTransformOrigin="0.519,-3.648"/>
+        
     </Grid>
 </Window>

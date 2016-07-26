@@ -10,7 +10,7 @@
 
         public PieViewModel()
         {
-            MyModel = new PlotModel { Title = "Pie Sample1" };
+            MyModel = new PlotModel();
 
             dynamic seriesP1 = new PieSeries {
                 StrokeThickness = 2.0,

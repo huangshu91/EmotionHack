@@ -129,7 +129,7 @@ namespace DataStore
         {
             string query = @"   SELECT * FROM [emo].[EmotionScore] ES 
                                 JOIN [emo].[ExecutionInstance] EI ON ES.ExecutionId = EI.Id 
-                                WHERE FileName LIKE '%@FileName%'
+                                WHERE FileName LIKE '%" + vid.FileName + @"%'
                                 ORDER BY [TimeStamp], [ExecutionId];";
 
             List<List<EmotionScore>> results = new List<List<EmotionScore>>();
@@ -152,7 +152,7 @@ namespace DataStore
                     }
                     scoreExe.Add(score);
                 }
-                if (scoreExe.Count != 0)
+                if (scoreExe != null && scoreExe.Count != 0)
                 {
                     results.Add(scoreExe);
                 }

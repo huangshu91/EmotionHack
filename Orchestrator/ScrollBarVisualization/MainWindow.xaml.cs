@@ -12,6 +12,7 @@
     {
         private GroupedModel Model;
         private TimeSpan videoExecutionDuration;
+        private OrderedDictionary History;
         private const double SamplingRate = 1;
 
         public SliderWindow()
@@ -25,6 +26,7 @@
         {
             InitializeComponent();
 
+            History = history;
             Model = (GroupedModel)this.DataContext;
         }
 
