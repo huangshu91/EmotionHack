@@ -69,20 +69,7 @@ namespace WPFMediaPlayer
 
         private void ShowFinalScoresForm()
         {
-            //TODO vivek: Hook up Orchestrator with final visualization(Form)
-            //We will want to figure out a way to display a Form from here. Code commented out is how the call would work in Program.cs in visualization 
-            var result = _Orchestrator.GetHistory();
-
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            Form1 form = new Form1(result.Count);
-            form.ShowDialog();
-
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Form1 graph = new Form1(result.Count);
-            //Application.Run(graph);
-            //graph.ShowGraphs(result);
+            _Orchestrator.ShowFinalVisualization();
         }
 
         private void Stop()

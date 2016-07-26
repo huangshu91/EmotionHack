@@ -10,11 +10,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebCam;
 using RuntimeVisualization;
+using RuntimeVisualization;
+using Visualization;
 
 namespace CamEmoOrc
 {
-    using RuntimeVisualization;
-
     public class BasicOrchestrator : IOrchestrator
     {
         private IEmotionClient _EmoClient;
@@ -83,12 +83,20 @@ namespace CamEmoOrc
             _Camera.cam_Stop();
         }
         
-        public List<List<EmotionScore>> GetHistory()
+        public void ShowFinalVisualization()
         {
-            //HACK, MUST FIX SOON (@STEVEN: CAN YOU TAKE A LOOK AT WHY THIS IS HANGING??)
-            //FAKING THIS SO THAT I CAN TEST THE REMAINING PARTS
-            return new List<List<EmotionScore>>();
-            //return _EmoClient.GetHistory().Result;
+            Task.Factory.StartNew(() => { ShowFinalvisualizationTask(); });
+        }
+
+        private void ShowFinalvisualizationTask()
+        {
+            var result = _EmoClient.GetHistory().Result;
+
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            Form1 form = new Form1(result.Count);
+            form.ShowGraphs(result);
+            form.ShowDialog();
         }
 
         public void FinishExecution()

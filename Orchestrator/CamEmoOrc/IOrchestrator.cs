@@ -32,6 +32,6 @@ namespace CamEmoOrc
         /// Gets the complete history of the video under exection
         /// </summary>
         /// <returns></returns>
-        List<List<EmotionScore>> GetHistory();
+        void ShowFinalVisualization();
     }
 }

@@ -35,6 +35,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\RuntimeVisualization\RuntimeVisualization.csproj">
       <Project>{86754c6e-2b33-4aa3-9059-807a1975e028}</Project>
       <Name>RuntimeVisualization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visualization\Visualization.csproj">
+      <Project>{fc7a4db3-d35c-4045-a613-82217b2ec442}</Project>
+      <Name>Visualization</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebCam\WebCam.csproj">
       <Project>{e141ff70-cac2-412c-abae-62cccae929f0}</Project>
