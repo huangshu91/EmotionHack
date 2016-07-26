@@ -7,12 +7,12 @@
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RuntimeWindow : Window
     {
         private EmotionGraph Model;
         private WebcamView secondary;
 
-        public MainWindow()
+        public RuntimeWindow()
         {
             //model = new EmotionGraph();
             //DataContext = model;

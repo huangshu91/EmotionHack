@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E204E1A2-185F-44A5-BAEF-53E9740E449D}</ProjectGuid>
+    <ProjectGuid>{6017653D-A9BE-427C-8F11-6EA975D94C4B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPFMediaPlayer</RootNamespace>
-    <AssemblyName>WPFMediaPlayer</AssemblyName>
+    <RootNamespace>SliderPlaybackVisualization</RootNamespace>
+    <AssemblyName>ScrollBarVisualization</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,7 +49,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,11 +67,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PieViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -110,34 +105,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CamEmoOrc\CamEmoOrc.csproj">
-      <Project>{5055cebd-8ba1-4c30-b67f-9b7052250430}</Project>
-      <Name>CamEmoOrc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EmotionalModels\EmotionalModels.csproj">
       <Project>{a17b5861-adb8-44ea-8e21-fe08e46f7b27}</Project>
       <Name>EmotionalModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RuntimeVisualization\RuntimeVisualization.csproj">
-      <Project>{86754c6e-2b33-4aa3-9059-807a1975e028}</Project>
-      <Name>RuntimeVisualization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ScrollBarVisualization\SliderPlaybackVisualization.csproj">
-      <Project>{6017653d-a9be-427c-8f11-6ea975d94c4b}</Project>
-      <Name>SliderPlaybackVisualization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Visualization\Visualization.csproj">
-      <Project>{fc7a4db3-d35c-4045-a613-82217b2ec442}</Project>
-      <Name>Visualization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
