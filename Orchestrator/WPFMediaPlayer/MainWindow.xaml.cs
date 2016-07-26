@@ -83,6 +83,8 @@ namespace WPFMediaPlayer
                 if (!_playState) mediaElement.Play();
                 else mediaElement.Pause();
                 _playState = !_playState;
+                //Setting the video execution duration here, since it's only available after the video is playing
+                _videoExecutionInstance.VideoLength = mediaElement.NaturalDuration.TimeSpan;
             }
         }
 
@@ -107,8 +109,7 @@ namespace WPFMediaPlayer
                 FileName = filename,
                 FullPath = fullPath,
                 Height = (int)mediaElement.ActualHeight,
-                Width = (int)mediaElement.ActualWidth,
-                VideoLength = mediaElement.NaturalDuration.TimeSpan
+                Width = (int)mediaElement.ActualWidth
             };
 
             #endregion
