@@ -16,4 +16,5 @@ namespace ScrollBarVisualization
         public void UpdateScore(EmotionScore emo)
         {
         }
+    }
 }

@@ -120,10 +120,10 @@ namespace DataStore
             return results;
         }
 
-        public async Task<List<EmotionScore>> GetScoresFilteredBy(int something)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<List<EmotionScore>> GetScoresFilteredBy(int something)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<List<List<EmotionScore>>> GetFullScoreHistory()
         {

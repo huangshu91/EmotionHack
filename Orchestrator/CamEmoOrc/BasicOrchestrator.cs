@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebCam;
 using RuntimeVisualization;
-using RuntimeVisualization;
 using Visualization;
 
 namespace CamEmoOrc

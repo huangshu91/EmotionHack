@@ -18,7 +18,7 @@ namespace DataStore
 
         Task<bool> FinishExecution(OrderedDictionary scores, int executionId);
 
-        Task<List<EmotionScore>> GetScoresFilteredBy(int something);
+        //Task<List<EmotionScore>> GetScoresFilteredBy(int something);
 
         Task<List<List<EmotionScore>>> GetFullScoreHistory();
 
