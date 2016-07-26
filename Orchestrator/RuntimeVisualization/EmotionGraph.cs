@@ -14,7 +14,9 @@
         private int _displaySpan = 10;
         public EmotionGraph()
         {
-            this.MyModel = new PlotModel { Title = "Example 1" };
+            this.MyModel = new PlotModel { Title = "LineGraph" };
+            //this.PieModel = new PlotModel { Title = "PieGraph" };
+
             this.MyModel.Background = OxyColors.White;
             this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = -1.5, Maximum = 1.5});
             //this.MyModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom});
@@ -38,6 +40,8 @@
             //myTimer.Elapsed += new ElapsedEventHandler(UpdateModel);
             //myTimer.Interval = 1000; // 1000 ms is one second
             //myTimer.Start();
+
+
         }
 
         public void UpdateModel(object source, ElapsedEventArgs e)

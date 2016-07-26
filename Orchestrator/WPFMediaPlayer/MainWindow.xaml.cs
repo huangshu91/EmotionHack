@@ -71,9 +71,14 @@ namespace WPFMediaPlayer
             if (!_startExecution && _videoLoaded)
             {
                 _startExecution = true;
+
+                string fullPath = mediaElement.Source.ToString();
+                int pos = fullPath.LastIndexOf("/") + 1;
+                string filename = fullPath.Substring(pos, fullPath.Length - pos);
+
                 VideoExecution vidEx = new VideoExecution()
                 {
-                    fileName = mediaElement.Source.ToString(),
+                    fileName = fullPath,
                     height = (int) mediaElement.ActualHeight,
                     width = (int) mediaElement.ActualWidth
                 };
