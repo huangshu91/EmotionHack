@@ -3,25 +3,27 @@ Video player and Orchestration (Vivek)
 	How do things plan out on the screen: layout
 
 Runtime Visualization
-	Different line for positive + negative scores
 	Make it pretty (Steven)
 
 User Final Visualization
 	Point in time and the score at that time
-		Static Graph (Steven)
-		Scroll bar (Steven and Reva)
-		Heap map or pie chart (Summer)
-		Add video frames at point (Vivek)
-		webcam frames at point (Yang)
+	Static Graph (Steven)
+	Scroll bar (Steven, Reva and Vivek)
+	Heap map or pie chart  (Steven)
+	Add video frames at point (Vivek)
+	webcam frames at point (Yang)
 
-Summary Final Visualization
-	Kibana (Sundeep)
+Final visualization Summary (Summer)
+	Summary for all emotions with tabs(Summer)
+	Make final visualization pretty and with cooler graphs (Summer)
+	Stretch goal: Scroll bar with video and pie chart showing (Summer)
 
 WebCam (Yang)
 	Show window 
 	Save timestamp + picture stream for the current execution
 
 PM Work (Summer)
-	Making ppt presentation
-	Getting people to like the project
-	Video making
+	Product spec
+	PPT Presentation
+	Video making (With part of the group’s help)
+
