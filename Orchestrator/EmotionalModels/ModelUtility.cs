@@ -36,6 +36,7 @@ namespace Emotional.Models
             double negativeEmo_min = Math.Min(sadness, Math.Min(anger, Math.Min(disgust, Math.Min(fear, contempt))));
             AggEmoScore = Math.Abs(positiveEmo_max) >= Math.Abs(negativeEmo_min) ? positiveEmo_max : negativeEmo_min;
             return AggEmoScore;
+
         }
 
         public static double ProcessScoreNegative(EmotionScore emo)

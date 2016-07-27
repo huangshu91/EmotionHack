@@ -80,7 +80,7 @@
         public void UpdateModel(object source, ElapsedEventArgs e)
         {
             double score = testy;
-            positive.Points.Add(new DataPoint(testx, score));
+            positive.Points.Add(new DataPoint(testx++, score));
             //negative.Points.Add(new DataPoint(testx++, -0.5 * score));
 
             testy *= -1;
@@ -100,7 +100,7 @@
             double pos = ModelUtility.ProcessScorePositive(emo);
             //double neg = ModelUtility.ProcessScoreNegative(emo);
 
-            positive.Points.Add(new DataPoint(testx, pos));
+            positive.Points.Add(new DataPoint(testx++, pos));
             //negative.Points.Add(new DataPoint(testx++, neg));
 
             if (testx >= _displaySpan)
