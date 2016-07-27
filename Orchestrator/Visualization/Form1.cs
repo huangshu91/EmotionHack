@@ -27,21 +27,25 @@ namespace Visualization
         {
             m_maxPointCount = pointCount;
             InitializeComponent();
-            combinedChart.BackColor = System.Drawing.Color.Black;
+
             combinedChart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             combinedChart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            combinedChart.BackColor = Color.Black;
+            combinedChart.ChartAreas[0].BackColor = Color.Black;
 
-            //initializeChart(combinedChart, "Aggregated Emotion", Color.Blue);
             initializeChart(angerChart, "Anger", Color.Red);
-            initializeChart(happinessChart, "Happiness", Color.Green);
+            initializeChart(happinessChart, "Happiness", Color.LightGreen);
             initializeChart(surpriseChart, "Surprise", Color.Orange);
             initializeChart(sadnessChart, "Sadness", Color.DimGray);
             initializeChart(contemptChart, "Contempt", Color.MediumPurple);
-            initializeChart(neutralChart, "Neutral", Color.Brown);
+            initializeChart(neutralChart, "Neutral", Color.SandyBrown);
             initializeChart(disgustChart, "Disgust", Color.Yellow);
-            initializeChart(fearChart, "Fear", Color.RosyBrown);
+            initializeChart(fearChart, "Fear", Color.Purple);
 
             combinedChart.Series.Clear();
+            combinedChart.ForeColor = Color.White;
+            combinedChart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
+            combinedChart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
 
             combinedChart.ChartAreas[0].AxisX.Minimum = 1;
             combinedChart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
@@ -67,6 +71,14 @@ namespace Visualization
 
             // set scrollbar small change to blockSize 
             chartArea.AxisX.ScaleView.SmallScrollSize = blockSize;
+            chartArea.AxisX.ScrollBar.ButtonColor = Color.Gray;
+
+            chartArea.AxisX.LineColor = Color.White;
+            chartArea.AxisY.LineColor = Color.White;
+            chartArea.AxisX.TitleForeColor = Color.White;
+            chartArea.AxisY.TitleForeColor = Color.White;
+            chartArea.AxisX.InterlacedColor = Color.White;
+            chartArea.AxisY.InterlacedColor = Color.White;
 
             Series anger = combinedChart.Series.Add("Anger");
             combinedChart.Series["Anger"].ChartType =
@@ -75,7 +87,7 @@ namespace Visualization
             Series happiness = combinedChart.Series.Add("Happiness");
             combinedChart.Series["Happiness"].ChartType =
                     SeriesChartType.StackedArea;
-            combinedChart.Series["Happiness"].Color = Color.Green;
+            combinedChart.Series["Happiness"].Color = Color.LightGreen;
             Series surprise = combinedChart.Series.Add("Surprise");
             combinedChart.Series["Surprise"].ChartType =
                     SeriesChartType.StackedArea;
@@ -91,7 +103,7 @@ namespace Visualization
             Series neutral = combinedChart.Series.Add("Neutral");
             combinedChart.Series["Neutral"].ChartType =
                     SeriesChartType.StackedArea;
-            combinedChart.Series["Neutral"].Color = Color.Brown;
+            combinedChart.Series["Neutral"].Color = Color.SandyBrown;
             Series disgust = combinedChart.Series.Add("Disgust");
             combinedChart.Series["Disgust"].ChartType =
                     SeriesChartType.StackedArea;
@@ -186,6 +198,8 @@ namespace Visualization
             chart.Series.Clear();
             chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
+            chart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
 
             chart.ChartAreas[0].AxisX.Minimum = 1;
             chart.ChartAreas[0].AxisX.Maximum = m_maxPointCount;
@@ -194,6 +208,7 @@ namespace Visualization
             chart.Series[seriesName].ChartType =
                     SeriesChartType.FastLine;
             chart.Series[seriesName].Color = color;
+            chart.ChartAreas[0].BackColor = Color.Black;
 
             var chartArea = chart.ChartAreas[series.ChartArea];
 
@@ -216,6 +231,10 @@ namespace Visualization
 
             // set scrollbar small change to blockSize 
             chartArea.AxisX.ScaleView.SmallScrollSize = blockSize;
+            chartArea.AxisX.LineColor = Color.White;
+            chartArea.AxisY.LineColor = Color.White;
+
+            chartArea.AxisX.ScrollBar.ButtonColor = Color.Gray;
         }
 
         private void Aggregated_SelectedIndexChanged(object sender, EventArgs e)
