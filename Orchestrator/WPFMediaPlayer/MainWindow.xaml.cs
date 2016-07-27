@@ -78,8 +78,6 @@ namespace WPFMediaPlayer
             {
                 _startExecution = true;
 
-                _Runtime.Show();
-
                 _Orchestrator.Start(_videoExecutionInstance, _Runtime);
             }
 
@@ -131,6 +129,8 @@ namespace WPFMediaPlayer
                 Height = (int)mediaElement.ActualHeight,
                 Width = (int)mediaElement.ActualWidth
             };
+
+            _Runtime.Show();
 
             #endregion
         }

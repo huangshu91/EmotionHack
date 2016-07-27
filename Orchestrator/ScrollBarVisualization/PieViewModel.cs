@@ -31,7 +31,7 @@
             MyModel.Series.Add(seriesP1);
         }
 
-        public void UpdateData(EmotionScore emo)
+        public void UpdateScore(EmotionScore emo)
         {
             //Model.UpdateScore(emo);
         }

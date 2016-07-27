@@ -50,20 +50,20 @@
 
         public void UpdateData(EmotionScore emo)
         {
-            //Model.UpdateScore(emo);
+            Model.PieViewModel.UpdateScore(emo);
         }
 
         private void playbackSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!_dragStarted)
             {
-                SeekPlaybackToNewPosition(playbackSlider.Value);
+                UpdateVisuals(playbackSlider.Value);
             }
         }
 
         private void playbackSlider_DragCompleted(object sender, DragCompletedEventArgs e)
         {
-            SeekPlaybackToNewPosition(playbackSlider.Value);
+            UpdateVisuals(playbackSlider.Value);
             this._dragStarted = false;
         }
 
@@ -72,12 +72,18 @@
             this._dragStarted = true;
         }
 
+        private void UpdateVisuals(double newPosition)
+        {
+            SeekPlaybackToNewPosition(newPosition);
+            UpdateData((EmotionScore)History[newPosition * 1000]);
+        }
+
         private void SeekPlaybackToNewPosition(double newPosition)
         {
             playbackMediaElement.Play();
-            playbackMediaElement.Position = TimeSpan.FromMilliseconds((1000 * newPosition * SamplingRate) - 100);
+            playbackMediaElement.Position = TimeSpan.FromMilliseconds((1000 * newPosition * SamplingRate) - 50);
             //HACK: putting a sleep here for 100 ms, so that the video actually renders before doing the pause
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             playbackMediaElement.Pause();
         }
     }
