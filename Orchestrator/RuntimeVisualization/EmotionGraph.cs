@@ -18,7 +18,7 @@
         public int testy = 1;
         public LineSeries positive { get; set; }
 
-        public LineSeries negative { get; set; }
+        //public LineSeries negative { get; set; }
 
         public PlotModel MyModel { get; private set; }
 
@@ -55,16 +55,16 @@
                 Smooth = true
             };
 
-            negative = new LineSeries
-            {
-                StrokeThickness = 2,
-                CanTrackerInterpolatePoints = false,
-                Title = "Value",
-                Smooth = true,
-                Color = OxyColors.Orchid
-            };
+            //negative = new LineSeries
+            //{
+            //    StrokeThickness = 2,
+            //    CanTrackerInterpolatePoints = false,
+            //    Title = "Value",
+            //    Smooth = true,
+            //    Color = OxyColors.Orchid
+            //};
 
-            this.MyModel.Series.Add(negative);
+            //this.MyModel.Series.Add(negative);
             this.MyModel.Series.Add(positive);
 
             this.MyModel.IsLegendVisible = false;
@@ -81,13 +81,13 @@
         {
             double score = testy;
             positive.Points.Add(new DataPoint(testx, score));
-            negative.Points.Add(new DataPoint(testx++, -0.5 * score));
+            //negative.Points.Add(new DataPoint(testx++, -0.5 * score));
 
             testy *= -1;
             if (testx >= _displaySpan)
             {
                 positive.Points.RemoveAt(0);
-                negative.Points.RemoveAt(0);
+                //negative.Points.RemoveAt(0);
             }
             
             this.MyModel.InvalidatePlot(true);
@@ -98,15 +98,15 @@
             //display the score in some way            
             //Line.Points.Add(new DataPoint(testx++, emo.scores.happiness));
             double pos = ModelUtility.ProcessScorePositive(emo);
-            double neg = ModelUtility.ProcessScoreNegative(emo);
+            //double neg = ModelUtility.ProcessScoreNegative(emo);
 
             positive.Points.Add(new DataPoint(testx, pos));
-            negative.Points.Add(new DataPoint(testx++, neg));
+            //negative.Points.Add(new DataPoint(testx++, neg));
 
             if (testx >= _displaySpan)
             {
                 positive.Points.RemoveAt(0);
-                negative.Points.RemoveAt(0);
+                //negative.Points.RemoveAt(0);
             }
 
             MyModel.InvalidatePlot(true);

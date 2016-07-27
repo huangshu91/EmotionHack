@@ -13,7 +13,7 @@
 
         private LineSeries positive { get; set; }
 
-        private LineSeries negative { get; set; }
+        //private LineSeries negative { get; set; }
 
         private OrderedDictionary History { get; set; }
 
@@ -50,16 +50,16 @@
                 Smooth = true
             };
 
-            negative = new LineSeries
-            {
-                StrokeThickness = 2,
-                CanTrackerInterpolatePoints = false,
-                Title = "Value",
-                Smooth = true,
-                Color = OxyColors.Orchid
-            };
+            //negative = new LineSeries
+            //{
+            //    StrokeThickness = 2,
+            //    CanTrackerInterpolatePoints = false,
+            //    Title = "Value",
+            //    Smooth = true,
+            //    Color = OxyColors.Orchid
+            //};
 
-            this.MyModel.Series.Add(negative);
+            //this.MyModel.Series.Add(negative);
             this.MyModel.Series.Add(positive);
 
             this.MyModel.IsLegendVisible = false;
@@ -78,7 +78,7 @@
                 var neg = ModelUtility.ProcessScoreNegative(score);
                 
                 positive.Points.Add(new DataPoint(timeStamp, pos));
-                negative.Points.Add(new DataPoint(timeStamp, neg));
+                //negative.Points.Add(new DataPoint(timeStamp, neg));
                 lastTime = timeStamp;
             }
 

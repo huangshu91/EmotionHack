@@ -12,13 +12,13 @@ namespace Emotional.Models
         {
             //weights
             double Weight_happiness = 1;
-            double Weight_surprise = 0.9;
+            double Weight_surprise = 1;
             double Weight_neutral = 0;
             double Weight_sadness = -1;
             double Weight_anger = -1;
-            double Weight_disgust = 0;
-            double Weight_fear = 0;
-            double Weight_contempt = 0;
+            double Weight_disgust = -1;
+            double Weight_fear = -1;
+            double Weight_contempt = -1;
 
             double AggEmoScore = 0.0;
 
@@ -32,7 +32,7 @@ namespace Emotional.Models
             double contempt = emo.scores.contempt * Weight_contempt;
             double fear = emo.scores.fear * Weight_fear;
 
-            double positiveEmo_max = Math.Max(happiness, Math.Max(surprise, neutral));
+            double positiveEmo_max = Math.Max(happiness, surprise);
             double negativeEmo_min = Math.Min(sadness, Math.Min(anger, Math.Min(disgust, Math.Min(fear, contempt))));
             AggEmoScore = Math.Abs(positiveEmo_max) >= Math.Abs(negativeEmo_min) ? positiveEmo_max : negativeEmo_min;
             return AggEmoScore;
