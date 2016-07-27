@@ -40,5 +40,11 @@
             this.Hide();
             secondary.Hide();
         }
+
+        public void Start()
+        {
+            this.Show();
+            secondary.Show();
+        }
     }
 }

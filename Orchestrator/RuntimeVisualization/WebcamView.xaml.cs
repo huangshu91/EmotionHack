@@ -43,6 +43,10 @@ namespace RuntimeVisualization
 
                         this.image.Source = bitImage;
                     }
+                    catch
+                    {
+                        //IGNORE THIS SHIT
+                    }
                     finally
                     {
 

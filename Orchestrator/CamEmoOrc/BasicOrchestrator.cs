@@ -12,6 +12,7 @@ using WebCam;
 using RuntimeVisualization;
 using Visualization;
 using SliderPlaybackVisualization;
+using System.Diagnostics;
 
 namespace CamEmoOrc
 {
@@ -20,7 +21,7 @@ namespace CamEmoOrc
         private IEmotionClient _EmoClient;
         private AccessCamera _Camera;
         private TimeSpan _sampleRate;
-        private bool _togglePlay;
+        private bool _togglePlay, _formStuffLoaded;
         private Task _OrcInstance;
         private RuntimeWindow _runtimeVisual;
 
@@ -32,6 +33,7 @@ namespace CamEmoOrc
             _EmoClient = new EmotionClient();
             _Camera = new AccessCamera();
             _togglePlay = false;
+            _formStuffLoaded = false;
         }
 
         public async Task<int> Start(VideoExecution videoExecution, RuntimeWindow realTimeVisualizer)
@@ -62,6 +64,8 @@ namespace CamEmoOrc
             _Camera.cam_Start();
             while (_togglePlay)
             {
+                Stopwatch timer = Stopwatch.StartNew();
+
                 MemoryStream pic = _Camera.cam_TakePic();
                 sampleTime += _sampleRate.TotalMilliseconds;
 
@@ -78,7 +82,12 @@ namespace CamEmoOrc
 
                 }
 
-                Thread.Sleep(_sampleRate);
+                timer.Stop();
+
+                TimeSpan timeToSleep = _sampleRate - timer.Elapsed;
+                timeToSleep = timeToSleep < TimeSpan.Zero ? TimeSpan.Zero : timeToSleep;
+
+                Thread.Sleep(timeToSleep);
             }
             _Camera.cam_Stop();
         }
@@ -97,8 +106,12 @@ namespace CamEmoOrc
         {
             var result = _EmoClient.GetHistory().Result;
 
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            if (!_formStuffLoaded)
+            {
+                System.Windows.Forms.Application.EnableVisualStyles();
+                System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            }
+
             Form1 form = new Form1(result.Count);
             form.ShowGraphs(result);
             form.ShowDialog();

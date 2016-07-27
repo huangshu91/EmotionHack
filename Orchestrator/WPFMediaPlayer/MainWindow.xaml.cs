@@ -130,7 +130,7 @@ namespace WPFMediaPlayer
                 Width = (int)mediaElement.ActualWidth
             };
 
-            _Runtime.Show();
+            _Runtime.Start();
 
             #endregion
         }
