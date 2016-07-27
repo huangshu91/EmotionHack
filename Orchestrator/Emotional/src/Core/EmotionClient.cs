@@ -19,24 +19,35 @@ namespace Emotional.Core
         private IDataLayer DbLayer { get; set; }
 
         public OrderedDictionary history { get; private set;  }
+
+        public OrderedDictionary camHistory { get; private set; }
+
         public OrderedDictionary aggHistory { get; private set; }
 
         private int ExecutionId { get; set; }
 
+        public VideoExecution video { get; set; }
+
         public EmotionClient()
         {
-            client = new EmoHttpClient();
-            DbLayer = new SQLDataLayer();
-            history = new OrderedDictionary();
-            aggHistory = new OrderedDictionary();
+            client =        new EmoHttpClient();
+            DbLayer =       new SQLDataLayer();
+            history =       new OrderedDictionary();
+            aggHistory =    new OrderedDictionary();
+            camHistory =    new OrderedDictionary();
+        }
+
+        public OrderedDictionary GetExecutionScores()
+        {
+            return history;
         }
 
         public async Task<int> BeginExecution(VideoExecution vid)
         {
             //ExecutionId = await DbLayer.GetExecutionContext(vid);
 
+            video = vid;
             ExecutionId = await DbLayer.WithDataLayerAsync<int>(async db => await db.GetExecutionContext(vid));
-            //return 0;
             return ExecutionId;
         }
 
@@ -52,7 +63,7 @@ namespace Emotional.Core
 
         public async Task<List<List<EmotionScore>>> GetHistory()
         {
-            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory());
+            return await DbLayer.WithDataLayerAsync(async db => await db.GetFullScoreHistory(video));
         }
 
         public async Task<EmotionScore> GetEmotion(Stream stream, double time)
@@ -64,7 +75,11 @@ namespace Emotional.Core
             scores.executionId = ExecutionId;
             scores.timeStamp = time;
 
-            history.Add(time, scores);
+            if (scores.scores != null)
+            {
+                history.Add(time, scores);
+                camHistory.Add(time, stream);
+            }
             return scores;
         }
 
@@ -80,6 +95,7 @@ namespace Emotional.Core
             if (scores.scores != null)
             {
                 history.Add(time, scores);
+                camHistory.Add(time, stream);
             }
             return scores;
         }

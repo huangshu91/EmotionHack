@@ -21,7 +21,7 @@ namespace CamEmoOrc
         /// <param name="videoExecution">The video execution instance</param>
         /// <param name="realTimeVisualizer">The object that is showing the visualizations of the realtime scores</param>
         /// <returns>id of the current execution</returns>
-        Task<int> Start(VideoExecution videoExecution, MainWindow realTimeVisualizer);
+        Task<int> Start(VideoExecution videoExecution, RuntimeWindow realTimeVisualizer);
 
         /// <summary>
         /// Finish the execution and upload scores.
@@ -32,6 +32,8 @@ namespace CamEmoOrc
         /// Gets the complete history of the video under exection
         /// </summary>
         /// <returns></returns>
-        void ShowFinalVisualization();
+        void ShowPostPlaybackVisualizations(VideoExecution videoExection);
+
+        OrderedDictionary GetExecutionScores();
     }
 }

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WebCam;
 using RuntimeVisualization;
 using Visualization;
+using SliderPlaybackVisualization;
 
 namespace CamEmoOrc
 {
@@ -21,7 +22,7 @@ namespace CamEmoOrc
         private TimeSpan _sampleRate;
         private bool _togglePlay;
         private Task _OrcInstance;
-        private MainWindow _runtimeVisual;
+        private RuntimeWindow _runtimeVisual;
 
         private double sampleTime = 0;
 
@@ -33,7 +34,7 @@ namespace CamEmoOrc
             _togglePlay = false;
         }
 
-        public async Task<int> Start(VideoExecution videoExecution, MainWindow realTimeVisualizer)
+        public async Task<int> Start(VideoExecution videoExecution, RuntimeWindow realTimeVisualizer)
         {
             _runtimeVisual = realTimeVisualizer;
             sampleTime = 0;
@@ -73,7 +74,7 @@ namespace CamEmoOrc
                     score.scores = score.scores ?? new Scores();
 
                     //use EmotionScore data to draw RuntimeVisualization
-                    _runtimeVisual.UpdateData(score);
+                    _runtimeVisual.UpdateData(score, pic);
 
                 }
 
@@ -81,10 +82,15 @@ namespace CamEmoOrc
             }
             _Camera.cam_Stop();
         }
-        
-        public void ShowFinalVisualization()
+
+        public void ShowPostPlaybackVisualizations(VideoExecution videoExection)
         {
             Task.Factory.StartNew(() => { ShowFinalvisualizationTask(); });
+        }
+
+        public OrderedDictionary GetExecutionScores()
+        {
+            return _EmoClient.GetExecutionScores();
         }
 
         private void ShowFinalvisualizationTask()

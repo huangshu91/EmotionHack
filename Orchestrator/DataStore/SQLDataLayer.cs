@@ -125,13 +125,16 @@ namespace DataStore
         //    throw new NotImplementedException();
         //}
 
-        public async Task<List<List<EmotionScore>>> GetFullScoreHistory()
+        public async Task<List<List<EmotionScore>>> GetFullScoreHistory(VideoExecution vid)
         {
-            string query = @"SELECT * FROM [emo].[EmotionScore] ORDER BY [TimeStamp], [ExecutionId];";
+            string query = @"   SELECT * FROM [emo].[EmotionScore] ES 
+                                JOIN [emo].[ExecutionInstance] EI ON ES.ExecutionId = EI.Id 
+                                WHERE FileName LIKE '%" + vid.FileName + @"%'
+                                ORDER BY [TimeStamp], [ExecutionId];";
 
             List<List<EmotionScore>> results = new List<List<EmotionScore>>();
             List<EmotionScore> scoreExe = null;
-            using (var reader = await this.ExecuteReaderAsync(query, false))
+            using (var reader = await this.ExecuteReaderAsync(query, false, "@FileName", vid.FileName))
             {
                 int prevExe = 0;
                 while (reader.Read())
@@ -149,7 +152,7 @@ namespace DataStore
                     }
                     scoreExe.Add(score);
                 }
-                if (scoreExe.Count != 0)
+                if (scoreExe != null && scoreExe.Count != 0)
                 {
                     results.Add(scoreExe);
                 }

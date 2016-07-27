@@ -1,6 +1,7 @@
 ﻿using CamEmoOrc;
 using Emotional.Models;
 using Microsoft.Win32;
+using SliderPlaybackVisualization;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -15,7 +16,7 @@ namespace WPFMediaPlayer
     {
         private bool _playState, _startExecution, _videoLoaded;
         private IOrchestrator _Orchestrator;
-        private RuntimeVisualization.MainWindow _Runtime;
+        private RuntimeVisualization.RuntimeWindow _Runtime;
         private VideoExecution _videoExecutionInstance;
 
         public MainWindow()
@@ -25,7 +26,7 @@ namespace WPFMediaPlayer
             _videoLoaded = false;
             InitializeComponent();
             _Orchestrator = new BasicOrchestrator(Settings.Default.SamplingRate);
-            _Runtime = new RuntimeVisualization.MainWindow();
+            _Runtime = new RuntimeVisualization.RuntimeWindow();
         }
 
         #region media player options
@@ -52,14 +53,18 @@ namespace WPFMediaPlayer
                     WindowStyle = WindowStyle.SingleBorderWindow;
                     break;
                 case Key.L:
-                    ShowFinalScoresForm();
+                    ShowPostPlaybackForms();
                     break;
             }
         }
 
-        private void ShowFinalScoresForm()
+        private void ShowPostPlaybackForms()
         {
-            _Orchestrator.ShowFinalVisualization();
+            _Orchestrator.ShowPostPlaybackVisualizations(_videoExecutionInstance);
+
+            SliderWindow _slider = new SliderWindow(_Orchestrator.GetExecutionScores());
+            _slider.LoadVideoExecution(_videoExecutionInstance);
+            _slider.Show();
         }
 
         private void Stop()
@@ -84,7 +89,12 @@ namespace WPFMediaPlayer
                 else mediaElement.Pause();
                 _playState = !_playState;
                 //Setting the video execution duration here, since it's only available after the video is playing
-                _videoExecutionInstance.VideoLength = mediaElement.NaturalDuration.TimeSpan;
+                if (_playState)
+                {
+                    //HACK to wait until the timespan is actually available
+                    while (!mediaElement.NaturalDuration.HasTimeSpan) ;
+                    _videoExecutionInstance.VideoLength = mediaElement.NaturalDuration.TimeSpan;
+                }
             }
         }
 
@@ -95,8 +105,18 @@ namespace WPFMediaPlayer
             ofd.DefaultExt = "*.*";
             ofd.Filter = "Media (*.*)|*.*";
             ofd.ShowDialog();
-            mediaElement.Source = new Uri(ofd.FileName);
-            _videoLoaded = true;
+
+            try
+            {
+                mediaElement.Source = new Uri(ofd.FileName);
+                _videoLoaded = true;
+            }
+            catch
+            {
+                _videoLoaded = false;
+                //IGNORE whatever just happened
+                return;
+            }
 
             #region setup video execution instance
 
@@ -134,7 +154,7 @@ namespace WPFMediaPlayer
             }
             _playState = false;
             _videoLoaded = false;
-            _Runtime.Hide();
+            _Runtime.Finish();
 
             mediaElement.Source = null;
         }
