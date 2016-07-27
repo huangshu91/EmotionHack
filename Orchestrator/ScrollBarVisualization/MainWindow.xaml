@@ -14,7 +14,9 @@
 
         <!-- <oxy:HeatMapSeries HorizontalAlignment="Left" Height="274" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/> -->
         <oxy:PlotView Model="{Binding PieViewModel.MyModel}" Height="300" Margin="10,10,10,0" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left" Background="Black"/>
-        
+
+        <oxy:PlotView Model="{Binding TimelineModel.MyModel}" Height="190" VerticalAlignment="Bottom" Margin="10,0,10,55" Background="Black" />
+
         <MediaElement x:Name="playbackMediaElement" HorizontalAlignment="Right" Height="300" Margin="0,10,10,0" VerticalAlignment="Top" Width="500"
                       LoadedBehavior="Manual" />
 

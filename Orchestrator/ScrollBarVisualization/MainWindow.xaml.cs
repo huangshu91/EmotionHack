@@ -28,6 +28,8 @@
 
             History = history;
             Model = (GroupedModel)this.DataContext;
+
+            Model.TimelineModel.SetHistory(History);
         }
 
         public void LoadVideoExecution(VideoExecution videoExecutionInstance)

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmotionScore.cs" />
+    <Compile Include="ModelUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoExecution.cs" />
   </ItemGroup>
