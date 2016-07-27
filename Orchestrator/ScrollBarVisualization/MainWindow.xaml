@@ -10,7 +10,7 @@
     </Window.DataContext>
     <Grid Background="Black">
         <Slider x:Name="playbackSlider" HorizontalAlignment="Left" Height="34" Margin="10,0,0,0" VerticalAlignment="Bottom" Width="870" RenderTransformOrigin="0.518,4.4"
-                TickPlacement="BottomRight" ValueChanged="playbackSlider_ValueChanged" IsSnapToTickEnabled="True"/>
+                TickPlacement="BottomRight" ValueChanged="playbackSlider_ValueChanged" Thumb.DragStarted="playbackSlider_DragStarted" Thumb.DragCompleted="playbackSlider_DragCompleted" IsSnapToTickEnabled="True"/>
 
         <!-- <oxy:HeatMapSeries HorizontalAlignment="Left" Height="274" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/> -->
         <oxy:PlotView Model="{Binding PieViewModel.MyModel}" Height="300" Margin="10,10,10,0" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left" Background="Black"/>
@@ -18,7 +18,7 @@
         <oxy:PlotView Model="{Binding TimelineModel.MyModel}" Height="190" VerticalAlignment="Bottom" Margin="10,0,10,55" Background="Black" />
 
         <MediaElement x:Name="playbackMediaElement" HorizontalAlignment="Right" Height="300" Margin="0,10,10,0" VerticalAlignment="Top" Width="500"
-                      LoadedBehavior="Manual" />
+                      LoadedBehavior="Manual" Volume="0"/>
 
         <Separator HorizontalAlignment="Left" Height="9" Margin="10,0,0,40" VerticalAlignment="Bottom" Width="870" RenderTransformOrigin="0.519,-3.648"/>
         

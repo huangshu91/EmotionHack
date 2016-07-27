@@ -4,6 +4,9 @@
     using System;
     using System.Windows;
     using System.Collections.Specialized;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Controls;
+    using System.Threading;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -14,6 +17,7 @@
         private TimeSpan videoExecutionDuration;
         private OrderedDictionary History;
         private const double SamplingRate = 1;
+        private bool _dragStarted = false;
 
         public SliderWindow()
         {
@@ -51,13 +55,29 @@
 
         private void playbackSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            MoveMediaElementvideoToPosition(playbackSlider.Value);
+            if (!_dragStarted)
+            {
+                SeekPlaybackToNewPosition(playbackSlider.Value);
+            }
         }
 
-        private void MoveMediaElementvideoToPosition(double newPosition)
+        private void playbackSlider_DragCompleted(object sender, DragCompletedEventArgs e)
         {
-            playbackMediaElement.Position = TimeSpan.FromSeconds(newPosition * SamplingRate);
+            SeekPlaybackToNewPosition(playbackSlider.Value);
+            this._dragStarted = false;
+        }
+
+        private void playbackSlider_DragStarted(object sender, DragStartedEventArgs e)
+        {
+            this._dragStarted = true;
+        }
+
+        private void SeekPlaybackToNewPosition(double newPosition)
+        {
             playbackMediaElement.Play();
+            playbackMediaElement.Position = TimeSpan.FromMilliseconds((1000 * newPosition * SamplingRate) - 100);
+            //HACK: putting a sleep here for 100 ms, so that the video actually renders before doing the pause
+            Thread.Sleep(100);
             playbackMediaElement.Pause();
         }
     }
