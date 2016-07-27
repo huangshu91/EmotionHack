@@ -44,7 +44,6 @@
 
             if (emo != null)
             {
-
                 seriesP1.Slices.Add(new PieSlice("Anger", emo.scores.anger) { IsExploded = true, Fill = OxyColors.Red });
                 seriesP1.Slices.Add(new PieSlice("Contempt", emo.scores.contempt) { IsExploded = true, Fill = OxyColors.MediumPurple });
                 seriesP1.Slices.Add(new PieSlice("Disgust", emo.scores.disgust) { IsExploded = true, Fill = OxyColors.Yellow });

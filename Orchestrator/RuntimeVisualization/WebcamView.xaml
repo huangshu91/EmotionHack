@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:RuntimeVisualization"
         mc:Ignorable="d"
         Title="WebcamView" Height="300" Width="300">
-    <Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" />
+    <Grid Background="Black">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300"/>
 
     </Grid>
 </Window>

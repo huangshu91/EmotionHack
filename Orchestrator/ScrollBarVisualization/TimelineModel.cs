@@ -22,24 +22,25 @@
             this.MyModel = new PlotModel { Title = "LineGraph" };
 
             this.MyModel.Background = OxyColors.Transparent;//.White;
-            this.MyModel.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Minimum = -1.5,
-                Maximum = 1.5,
-                TextColor = OxyColors.White,
-                AxislineColor = OxyColors.White,
-                TicklineColor = OxyColors.White,
-            }
-            );
-            this.MyModel.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Bottom,
-                TextColor = OxyColors.White,
-                AxislineColor = OxyColors.White,
-                TicklineColor = OxyColors.White,
-            }
-            );
+            //this.MyModel.Axes.Add(new LinearAxis
+            //{
+            //    Position = AxisPosition.Left,
+            //    Minimum = -1.5,
+            //    Maximum = 1.5,
+            //    TextColor = OxyColors.White,
+            //    AxislineColor = OxyColors.White,
+            //    TicklineColor = OxyColors.White,
+            //}
+            //);
+            //this.MyModel.Axes.Add(new LinearAxis
+            //{
+            //    Position = AxisPosition.Bottom,
+            //    TextColor = OxyColors.White,
+            //    AxislineColor = OxyColors.White,
+            //    TicklineColor = OxyColors.White,
+            //    Minimum = 0
+            //}
+            //);
 
             positive = new LineSeries
             {
@@ -67,16 +68,42 @@
         public void SetHistory(OrderedDictionary history)
         {
             History = history;
+            double lastTime = 0;
             foreach (DictionaryEntry timeScore in history)
             {
                 var timeStamp = (double)timeScore.Key;
+                timeStamp /= 1000;
                 var score = (EmotionScore)timeScore.Value;
                 var pos = ModelUtility.ProcessScorePositive(score);
                 var neg = ModelUtility.ProcessScoreNegative(score);
                 
                 positive.Points.Add(new DataPoint(timeStamp, pos));
-                negative.Points.Add(new DataPoint(timeStamp++, neg));
+                negative.Points.Add(new DataPoint(timeStamp, neg));
+                lastTime = timeStamp;
             }
+
+            this.MyModel.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Minimum = -1.5,
+                Maximum = 1.5,
+                TextColor = OxyColors.White,
+                AxislineColor = OxyColors.White,
+                TicklineColor = OxyColors.White,
+            }
+            );
+            this.MyModel.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                TextColor = OxyColors.White,
+                AxislineColor = OxyColors.White,
+                TicklineColor = OxyColors.White,
+                Minimum = 0,
+                Maximum = lastTime + 1,
+            }
+            );
+
+            this.MyModel.InvalidatePlot(true);
         }
     }
 

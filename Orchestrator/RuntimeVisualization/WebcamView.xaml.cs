@@ -29,18 +29,24 @@ namespace RuntimeVisualization
             {
                 this.Dispatcher.Invoke((Action)(() =>
                 {
-                    var bitImage = new BitmapImage();
+                    try
+                    {
+                        var bitImage = new BitmapImage();
 
-                    stream.Position = 0;
-                    bitImage.BeginInit();
-                    bitImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitImage.StreamSource = stream;
-                    bitImage.EndInit();
+                        stream.Position = 0;
+                        bitImage.BeginInit();
+                        bitImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitImage.StreamSource = stream;
+                        bitImage.EndInit();
 
-                    bitImage.Freeze();
+                        bitImage.Freeze();
 
-                    this.image.Source = bitImage;
+                        this.image.Source = bitImage;
+                    }
+                    finally
+                    {
 
+                    }
                 }));
             }
         }
