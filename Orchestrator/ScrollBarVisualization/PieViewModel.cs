@@ -14,11 +14,11 @@
 
             var seriesP1 = new PieSeries {
                 StrokeThickness = 2.0,
-                InsideLabelPosition = 0.8,
+                InsideLabelPosition = 0.6,
                 AngleSpan = 360,
                 StartAngle = 0,
-                InsideLabelColor = OxyColors.Azure,
-                TextColor = OxyColors.AliceBlue,
+                InsideLabelColor = OxyColors.Black,
+                TextColor = OxyColors.DarkGray,
                 Stroke = OxyColors.Gray
             };
 
@@ -34,11 +34,11 @@
             var seriesP1 = new PieSeries
             {
                 StrokeThickness = 2.0,
-                InsideLabelPosition = 0.8,
+                InsideLabelPosition = 0.6,
                 AngleSpan = 360,
                 StartAngle = 0,
-                InsideLabelColor = OxyColors.Azure,
-                TextColor = OxyColors.AliceBlue,
+                InsideLabelColor = OxyColors.Black,
+                TextColor = OxyColors.DarkGray,
                 Stroke = OxyColors.Gray
             };
 

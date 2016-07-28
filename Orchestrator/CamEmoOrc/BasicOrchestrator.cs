@@ -30,7 +30,6 @@ namespace CamEmoOrc
         public BasicOrchestrator(double samplingRate)
         {
             _sampleRate = TimeSpan.FromSeconds(samplingRate);
-            _EmoClient = new EmotionClient();
             _Camera = new AccessCamera();
             _togglePlay = false;
             _formStuffLoaded = false;
@@ -40,6 +39,7 @@ namespace CamEmoOrc
         {
             _runtimeVisual = realTimeVisualizer;
             sampleTime = 0;
+            _EmoClient = new EmotionClient();
             return await Task.Factory.StartNew<int>(() => StartExecution(videoExecution));
         }
 
@@ -110,6 +110,7 @@ namespace CamEmoOrc
             {
                 System.Windows.Forms.Application.EnableVisualStyles();
                 System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+                _formStuffLoaded = true;
             }
 
             Form1 form = new Form1(result.Count);
